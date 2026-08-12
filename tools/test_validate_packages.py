@@ -11,13 +11,28 @@ from tools import validate_packages as validator
 
 
 class PackageValidatorTests(unittest.TestCase):
-    def _repository(self, *, checksum: str | None = None, enabled: object = True) -> tuple[Path, Path]:
+    def _repository(
+        self,
+        *,
+        checksum: str | None = None,
+        enabled: object = True,
+        include_rights: bool = True,
+        blank_license: bool = False,
+    ) -> tuple[Path, Path]:
         root = Path(tempfile.mkdtemp(prefix="bookvoxlyra-validator-"))
         package = root / "books" / "sample"
         package.mkdir(parents=True)
-        payload = b"hello VoxLyra\n"
-        (package / "book.txt").write_bytes(payload)
-        actual = hashlib.sha256(payload).hexdigest()
+
+        payloads: dict[str, bytes] = {"book.txt": b"hello VoxLyra\n"}
+        if include_rights:
+            payloads["LICENSE.txt"] = b"" if blank_license else b"Author/licensor grants redistribution and derivative rights.\n"
+            payloads["SOURCES.txt"] = b"Original source/provenance record.\n"
+        for name, payload in payloads.items():
+            (package / name).write_bytes(payload)
+
+        checksums = {name: hashlib.sha256(payload).hexdigest() for name, payload in payloads.items()}
+        if checksum is not None:
+            checksums["book.txt"] = checksum
         manifest = {
             "package_id": "sample",
             "content_type": "book",
@@ -25,8 +40,8 @@ class PackageValidatorTests(unittest.TestCase):
             "language": "ru",
             "version": "1.0",
             "created_at": "2026-08-12T00:00:00Z",
-            "files": ["book.txt"],
-            "checksums": {"book.txt": checksum or actual},
+            "files": list(payloads),
+            "checksums": checksums,
         }
         (package / "manifest.json").write_text(
             json.dumps(manifest, ensure_ascii=False),
@@ -53,9 +68,9 @@ class PackageValidatorTests(unittest.TestCase):
         with patch.object(validator, "ROOT", root), patch.object(validator, "INDEX_PATH", index_path):
             return validator.validate()
 
-    def test_valid_enabled_payload_checks_real_sha256(self):
+    def test_valid_enabled_payload_checks_real_sha256_and_rights_files(self):
         root, index_path = self._repository()
-        self.assertEqual(self._validate(root, index_path), (1, 1))
+        self.assertEqual(self._validate(root, index_path), (1, 3))
 
     def test_corrupt_payload_checksum_is_rejected(self):
         root, index_path = self._repository(checksum="0" * 64)
@@ -65,6 +80,16 @@ class PackageValidatorTests(unittest.TestCase):
     def test_enabled_must_be_boolean_not_truthy_text(self):
         root, index_path = self._repository(enabled="true")
         with self.assertRaisesRegex(validator.ValidationError, "enabled must be true or false"):
+            self._validate(root, index_path)
+
+    def test_enabled_package_requires_license_and_sources(self):
+        root, index_path = self._repository(include_rights=False)
+        with self.assertRaisesRegex(validator.ValidationError, "rights files"):
+            self._validate(root, index_path)
+
+    def test_rights_files_must_not_be_empty_placeholders(self):
+        root, index_path = self._repository(blank_license=True)
+        with self.assertRaisesRegex(validator.ValidationError, "LICENSE.txt must not be empty"):
             self._validate(root, index_path)
 
     def test_undeclared_payload_file_is_rejected(self):
