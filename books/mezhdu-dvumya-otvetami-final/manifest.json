@@ -11,7 +11,9 @@
   "source_size_bytes": 13713182,
   "source_sha256": "d4669beb528e58448dc2a21c8a8848f53f871d4a7c16ffd0904918e606b9ea60",
   "final_check_completed": true,
-  "import_ready": false,
+  "source_import_ready": false,
   "normalization_required": true,
+  "payload_present": false,
+  "import_enabled": false,
   "owner_only_import": true
 }
