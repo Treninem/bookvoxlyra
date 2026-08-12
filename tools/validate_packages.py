@@ -12,6 +12,8 @@ PACKAGE_ID_RE = re.compile(r"^[A-Za-z0-9._-]{1,51}$")
 TYPE_DIRS = {"book": "books", "comics": "comics", "audiobook": "audiobooks"}
 MAX_PACKAGES = 5000
 MAX_FILES = 20_000
+REQUIRED_RIGHTS_FILES = {"LICENSE.txt", "SOURCES.txt"}
+ADMIN_FILES = REQUIRED_RIGHTS_FILES | {"metadata.json", "description.txt", "cover.jpg", "cover.png", "cover.webp"}
 
 
 class ValidationError(RuntimeError):
@@ -44,6 +46,15 @@ def _sha256(path: Path) -> str:
         while chunk := stream.read(1024 * 1024):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _validate_rights_file(path: Path, *, manifest_path: str, relative: str) -> None:
+    try:
+        text = path.read_text(encoding="utf-8").strip()
+    except UnicodeDecodeError as exc:
+        raise ValidationError(f"{manifest_path}: {relative} must be UTF-8 text") from exc
+    if not text:
+        raise ValidationError(f"{manifest_path}: {relative} must not be empty")
 
 
 def _validate_enabled_package(entry: dict, seen_ids: set[str]) -> tuple[str, int]:
@@ -107,6 +118,14 @@ def _validate_enabled_package(entry: dict, seen_ids: set[str]) -> tuple[str, int
     normalized_files = [_safe_relative(item, label="payload path") for item in files]
     if len(normalized_files) != len(set(normalized_files)):
         raise ValidationError(f"{manifest_path}: duplicate files entries")
+    missing_rights = sorted(REQUIRED_RIGHTS_FILES - set(normalized_files))
+    if missing_rights:
+        raise ValidationError(
+            f"{manifest_path}: enabled package must declare rights files: {', '.join(missing_rights)}"
+        )
+    if not any(name not in ADMIN_FILES for name in normalized_files):
+        raise ValidationError(f"{manifest_path}: enabled package has no content payload")
+
     normalized_checksums = {
         _safe_relative(key, label="checksum path"): str(value).strip().lower()
         for key, value in checksums.items()
@@ -128,6 +147,8 @@ def _validate_enabled_package(entry: dict, seen_ids: set[str]) -> tuple[str, int
             raise ValidationError(
                 f"{manifest_path}: SHA-256 mismatch for {relative}: expected {expected}, got {actual}"
             )
+        if relative in REQUIRED_RIGHTS_FILES:
+            _validate_rights_file(payload, manifest_path=manifest_path, relative=relative)
 
     declared = set(normalized_files)
     actual_files = {
