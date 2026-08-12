@@ -11,6 +11,8 @@
   "source_archive": "VoxLyra_Library_001-135_IMPORT_READY.zip",
   "source_size_bytes": 155672972,
   "source_sha256": "cc8f1deeae3c8861f60c5f1a4b5ff9459770b0b3515076b802dd7e2eb8684c21",
-  "import_ready": true,
+  "source_import_ready": true,
+  "payload_present": false,
+  "import_enabled": false,
   "owner_only_import": true
 }
