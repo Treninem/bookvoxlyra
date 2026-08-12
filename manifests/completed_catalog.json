@@ -5,7 +5,8 @@
   "policy": {
     "completed_only": true,
     "exclude_partial_or_ongoing": true,
-    "exclude_unverified_rights": true
+    "exclude_unverified_rights": true,
+    "import_requires_payload_present": true
   },
   "completed_content": [
     {
@@ -16,7 +17,8 @@
       "status": "COMPLETED",
       "rights": "public_domain",
       "source_archive": "VoxLyra_Library_001-135_IMPORT_READY.zip",
-      "import_ready_source": true
+      "source_import_ready": true,
+      "payload_present": false
     },
     {
       "id": "schastye-vo-mne-final",
@@ -26,7 +28,8 @@
       "chapters": 170,
       "status": "COMPLETED",
       "source_archive": "VoxLyra_Import_Schastye_vo_mne_FINAL.zip",
-      "import_ready_source": true
+      "source_import_ready": true,
+      "payload_present": false
     },
     {
       "id": "mezhdu-dvumya-otvetami-final",
@@ -37,8 +40,9 @@
       "chapters": 1020,
       "status": "COMPLETED",
       "source_archive": "Между_двумя_ответами_ФИНАЛЬНЫЙ_КОМПЛЕКТ_С_ОБЛОЖКОЙ.zip",
-      "import_ready_source": false,
-      "note": "Final manuscript is complete; normalize to BookVoxLyra package before import."
+      "source_import_ready": false,
+      "normalization_required": true,
+      "payload_present": false
     },
     {
       "id": "open-comics-batch01-stage03",
@@ -49,9 +53,11 @@
       "source_archive": "VoxLyra_Open_Comics_BATCH01_STAGE03.zip",
       "rights_checked": true,
       "commercial_use": true,
+      "redistribution": true,
       "derivative_works": true,
       "translation_allowed": true,
-      "import_ready_source": true,
+      "source_import_ready": true,
+      "payload_present": false,
       "variants": [
         "Acelera SP — Volume 1 [PT-BR]",
         "Ускоряйся, SP — Том 1 [RU]",
@@ -64,7 +70,10 @@
   ],
   "excluded_incomplete_examples": [
     "Эхо воспоминаний — available library copies only reach chapter 30",
-    "Resonance — partial/continuation working packages",
-    "Пока мы учимся любить — available packages are not marked final"
+    "Resonance — working/partial continuation packages",
+    "Пока мы учимся любить — available packages are not marked final",
+    "Грань реальности — catalog presence found, but no verified final source archive found",
+    "Последнее тепло, для тебя — catalog presence found, but no verified final source archive found",
+    "Тридцать ночей у Волка — catalog presence found, but no verified final source archive found"
   ]
 }
