@@ -63,10 +63,13 @@ Rules enforced by the source validator and mirrored by VoxLyra:
 - `files` is non-empty, unique and capped at 20,000 entries;
 - `checksums` must match `files` exactly;
 - every declared file must exist and match its SHA-256;
+- every enabled package must explicitly declare both `LICENSE.txt` and `SOURCES.txt`;
+- `LICENSE.txt` and `SOURCES.txt` must be non-empty UTF-8 text rather than placeholder files;
+- an enabled package must contain an actual content payload in addition to metadata/cover/rights files;
 - enabled package directories cannot contain undeclared payload files;
 - duplicate enabled package IDs or duplicate index paths are rejected.
 
-Rights/source files such as `LICENSE.txt` and `SOURCES.txt` must contain real information and are never fabricated by the importer or validator.
+Rights/source files must contain real provenance and permission information and are never fabricated by the importer or validator. Structural validation does not itself invent or grant copyright permission; the source evidence still has to be genuine.
 
 ## Automatic validation
 
@@ -78,7 +81,9 @@ It executes:
 python3 tools/validate_packages.py
 ```
 
-The current repository is valid even when it has zero enabled packages. Once a real payload is uploaded and its index entry is switched to `enabled: true`, CI immediately verifies the manifest, declared files and SHA-256 values before VoxLyra can consume the package.
+The current repository is valid even when it has zero enabled packages. Once a real payload is uploaded and its index entry is switched to `enabled: true`, CI immediately verifies the manifest, rights/source files, declared payload and SHA-256 values before VoxLyra can consume the package.
+
+`validator-tests.yml` also runs real temporary fixture packages and confirms that corrupt hashes, ambiguous `enabled` values, missing/blank rights files and undeclared payload files are rejected.
 
 ## Canonical-version rule
 
