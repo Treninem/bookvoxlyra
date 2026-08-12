@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "books": [
+    {
+      "id": "mezhdu-dvumya-otvetami-final",
+      "title": "Между двумя ответами",
+      "author": "Treninem",
+      "language": "ru",
+      "completed": true,
+      "format": "fb2",
+      "book": "book.fb2",
+      "cover": "cover.jpg",
+      "description": "description.txt",
+      "metadata": "metadata.json"
+    }
+  ]
+}
