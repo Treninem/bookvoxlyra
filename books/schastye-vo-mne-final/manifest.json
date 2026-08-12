@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "package_id": "schastye-vo-mne-final",
+  "kind": "book",
+  "title": "Счастье во мне",
+  "language": "ru",
+  "status": "COMPLETED",
+  "chapters": 170,
+  "source_archive": "VoxLyra_Import_Schastye_vo_mne_FINAL.zip",
+  "source_size_bytes": 2012761,
+  "source_sha256": "ba01f38c06b76fd6a6bdf2806c18f5de8e321313151e4f4da2d1d00ba064d594",
+  "source_revision": "STAGE_018_FINAL_REVISED",
+  "import_ready": true,
+  "owner_only_import": true
+}
