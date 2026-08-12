@@ -1,0 +1,27 @@
+name: BookVoxLyra Validator Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - '.github/workflows/validator-tests.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - '.github/workflows/validator-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test validator fixtures
+        run: python3 -m unittest tools.test_validate_packages
+      - name: Validate repository index
+        run: python3 tools/validate_packages.py
