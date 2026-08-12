@@ -9,21 +9,32 @@ VoxLyra does **not** use this repository as its database or permanent runtime st
 - `books/<package_id>/` — EPUB/FB2/TXT/PDF and other supported book packages.
 - `comics/<package_id>/` — comics, manga, manhwa and webtoon packages.
 - `audiobooks/<package_id>/` — audiobook packages.
-- `manifests/import_index.json` — repository-level import index for fast scans of large libraries.
+- `manifests/import_index.json` — canonical package discovery index used by VoxLyra.
+- `tools/validate_packages.py` — source-side structural/SHA-256 validator.
 
 ## Import index
 
-`manifests/import_index.json` is the preferred discovery path. It prevents VoxLyra from making an API request for every directory when the repository grows to hundreds or thousands of packages.
+`manifests/import_index.json` is the fast discovery entry point. Every entry contains a package `path` and can optionally specify `manifest_path`.
 
-Each entry contains `path`, `manifest_path` and `enabled`. Disabled legacy/staging packages remain visible for provenance but are never offered for import. A package must not be enabled until its complete payload is actually committed.
-
-## Canonical package manifest
-
-Every **enabled** package must include `manifest.json` with at least:
+A package is considered importable only when its index entry has:
 
 ```json
 {
-  "package_id": "example-book-001",
+  "path": "books/example-package",
+  "manifest_path": "books/example-package/manifest.json",
+  "enabled": true
+}
+```
+
+Known legacy records whose payload is not actually stored in this repository stay `enabled: false`. Do **not** enable a package merely because metadata for an old archive exists.
+
+## Enabled package manifest
+
+Every enabled package must contain a current VoxLyra import `manifest.json` with at least:
+
+```json
+{
+  "package_id": "example-package",
   "content_type": "book",
   "title": "Example",
   "language": "ru",
@@ -31,30 +42,43 @@ Every **enabled** package must include `manifest.json` with at least:
   "created_at": "2026-08-12T00:00:00Z",
   "files": [
     "metadata.json",
-    "description.txt",
-    "cover.jpg",
+    "book.epub",
     "LICENSE.txt",
-    "SOURCES.txt",
-    "book.epub"
+    "SOURCES.txt"
   ],
   "checksums": {
     "metadata.json": "<sha256>",
-    "description.txt": "<sha256>",
-    "cover.jpg": "<sha256>",
+    "book.epub": "<sha256>",
     "LICENSE.txt": "<sha256>",
-    "SOURCES.txt": "<sha256>",
-    "book.epub": "<sha256>"
+    "SOURCES.txt": "<sha256>"
   }
 }
 ```
 
-`content_type` is `book`, `comics` or `audiobook`. All paths are relative to the package directory and every declared file must have a real SHA-256 checksum.
+Rules enforced by the source validator and mirrored by VoxLyra:
 
-Rights/source files such as `LICENSE.txt` and `SOURCES.txt` must contain real information and are never fabricated by the importer. Presence in GitHub does not itself grant redistribution rights.
+- `package_id` is ASCII-safe and at most 51 characters so owner Telegram callbacks remain valid;
+- `content_type` is `book`, `comics` or `audiobook` and must match the top-level package folder;
+- payload paths must be relative and cannot contain `..`;
+- `files` is non-empty, unique and capped at 20,000 entries;
+- `checksums` must match `files` exactly;
+- every declared file must exist and match its SHA-256;
+- enabled package directories cannot contain undeclared payload files;
+- duplicate enabled package IDs or duplicate index paths are rejected.
 
-## Current staging packages
+Rights/source files such as `LICENSE.txt` and `SOURCES.txt` must contain real information and are never fabricated by the importer or validator.
 
-The existing historical manifests currently have `payload_present=false` / `import_enabled=false`: their source archives are not stored in this repository. They are intentionally disabled in `manifests/import_index.json`, so VoxLyra will not treat them as importable packages or fail the whole scan because of an old manifest schema.
+## Automatic validation
+
+`.github/workflows/validate-packages.yml` runs on changes to package folders, the import index, validator or workflow itself.
+
+It executes:
+
+```bash
+python3 tools/validate_packages.py
+```
+
+The current repository is valid even when it has zero enabled packages. Once a real payload is uploaded and its index entry is switched to `enabled: true`, CI immediately verifies the manifest, declared files and SHA-256 values before VoxLyra can consume the package.
 
 ## Canonical-version rule
 
@@ -64,3 +88,7 @@ One work is stored only once and only under its latest canonical title and lates
 - Old titles, old covers, superseded archives, intermediate stages and earlier revisions are not stored as separate importable works.
 - When several archives belong to the same work, only the newest fully completed canonical package is eligible for import.
 - Drafts, partial chapter ranges and working backups are excluded from the completed catalog.
+
+## Current blocker
+
+The existing recorded packages are intentionally disabled because their original binary payloads are not present in this repository. Their metadata may describe checked historical archives, but metadata alone is not importable content. A package must remain disabled until the real payload, manifest checksums and genuine rights/source evidence are present.
