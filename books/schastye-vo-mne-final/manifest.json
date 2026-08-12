@@ -10,6 +10,8 @@
   "source_size_bytes": 2012761,
   "source_sha256": "ba01f38c06b76fd6a6bdf2806c18f5de8e321313151e4f4da2d1d00ba064d594",
   "source_revision": "STAGE_018_FINAL_REVISED",
-  "import_ready": true,
+  "source_import_ready": true,
+  "payload_present": false,
+  "import_enabled": false,
   "owner_only_import": true
 }
