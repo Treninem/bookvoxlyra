@@ -98,7 +98,7 @@ Two real final source archives were recovered from the project owner's file libr
 - package metadata and FB2 identify the author as `@Treninem`;
 - chapter sequence verified as `1–1020`;
 - metadata is normalized to VoxLyra `platform_original` + `rights_checked=true`;
-- `LICENSE.txt` and `SOURCES.txt` provenance records are now committed.
+- `LICENSE.txt` and `SOURCES.txt` provenance records are committed.
 
 ### `schastye-vo-mne-final`
 
@@ -109,9 +109,25 @@ Two real final source archives were recovered from the project owner's file libr
 - package metadata and FB2 identify the author as `Treninem`;
 - chapter sequence verified as `1–170`;
 - metadata is normalized to VoxLyra `platform_original` + `rights_checked=true`;
-- `LICENSE.txt` and `SOURCES.txt` provenance records are now committed.
+- `LICENSE.txt` and `SOURCES.txt` provenance records are committed.
 
-Both final FB2 texts were also converted locally into standard EPUB payloads without changing chapter order or paragraph text, and source-ready package archives were retained in the project owner's file library. Their import-index entries intentionally remain disabled until the book binaries and final source covers are physically committed to this repository and the canonical manifests are regenerated against those exact repository bytes.
+Both final FB2 texts were converted into standard EPUB payloads without changing chapter order or paragraph text, and source-ready package archives were retained in the project owner's file library. Their import-index entries intentionally remain disabled until the exact binary EPUB/cover bytes reach this repository in the same atomic package commit.
+
+## Owner binary publication bridge
+
+VoxLyra `v1.16.1` now contains a disabled-by-default `SYSTEM_OWNER_ID` source publisher designed for these prepared archives.
+
+- Telegram command: `/github_source_publish`;
+- hidden system-owner button: `⬆️ Source ZIP → GitHub` when enabled;
+- separate fine-grained `GITHUB_SOURCE_WRITE_TOKEN` restricted to this source repository;
+- validates ZIP structure, manifest, SHA-256, rights/source evidence and actual work payload;
+- creates Git blobs first;
+- atomically replaces the canonical package tree and switches this repository's import-index entry to `enabled=true` in the same commit;
+- deletes stale files from a previous canonical package revision;
+- fast-forwards the branch without force;
+- an upload error before the ref update leaves the currently visible package/index untouched.
+
+This gives binary source packages a controlled path into the repository without putting the write token in source control and without allowing regular admins/owners to publish content.
 
 ## Canonical-version rule
 
@@ -124,4 +140,4 @@ One work is stored only once and only under its latest canonical title and lates
 
 ## Current blocker
 
-The two recovered books are no longer blocked by discovery, chapter integrity or rights-provenance staging. Their remaining blocker is binary repository placement: the current GitHub connector can safely commit UTF-8 repository content but does not expose a local-file/binary upload parameter for the prepared EPUB/cover bytes. Until those exact binaries are placed in `bookvoxlyra`, both entries stay disabled so VoxLyra cannot import an incomplete package.
+The two recovered books are no longer blocked by discovery, chapter integrity, rights-provenance staging or missing publication code. Their remaining production step is deployment configuration: the VoxLyra source-write bridge must be enabled with a separate fine-grained GitHub token (`Contents: Read and write`) and then each already prepared source-ready ZIP can be sent through the hidden system-owner flow. Until that write credential is configured, both index entries deliberately stay disabled and VoxLyra cannot import a half-package.
