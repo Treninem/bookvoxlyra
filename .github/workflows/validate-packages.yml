@@ -1,0 +1,33 @@
+name: BookVoxLyra Package Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'books/**'
+      - 'comics/**'
+      - 'audiobooks/**'
+      - 'manifests/import_index.json'
+      - 'tools/validate_packages.py'
+      - '.github/workflows/validate-packages.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'books/**'
+      - 'comics/**'
+      - 'audiobooks/**'
+      - 'manifests/import_index.json'
+      - 'tools/validate_packages.py'
+      - '.github/workflows/validate-packages.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate import index, manifests, files and SHA-256
+        run: python3 tools/validate_packages.py
