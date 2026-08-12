@@ -1,0 +1,13 @@
+Source provenance
+
+Source archive: VoxLyra_Import_Mezhdu_dvumya_otvetami_FINAL.zip
+Source archive SHA-256: 8c30d355bde52302041a1866edf53a636d735a698a419dda98b546b875abe46f
+Embedded source book: Books/001/book.fb2
+Source FB2 SHA-256: 3bd7213a458fb20d26d2175594ad949e43000e3c75e2905c48a5751b9f8bcb24
+Source cover SHA-256: 64706e708bda5979e698fff58f299aa2a5ad37ce794613118c9f8a213aa1088b
+Package metadata title: Между двумя ответами
+Package metadata author: @Treninem
+Verified chapter sequence in the source FB2: 1–1020.
+
+For repository storage the FB2 text is prepared for conversion to a standard EPUB without changing chapter order or paragraph text. The final binary payload remains disabled until the converted book file and final cover are committed and covered by the canonical manifest checksums.
+No external third-party source is claimed by this package.
