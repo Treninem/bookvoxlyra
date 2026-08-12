@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "package_id": "open-comics-batch01-stage03",
+  "kind": "comics_batch",
+  "status": "COMPLETED",
+  "works": 3,
+  "items": 6,
+  "source_archive": "VoxLyra_Open_Comics_BATCH01_STAGE03.zip",
+  "source_size_bytes": 47710756,
+  "source_sha256": "d5cf87d6ba178294a4f3ec4584842f6199ccedd17a9835fbb6b819517884d70c",
+  "rights_checked": true,
+  "commercial_use": true,
+  "redistribution": true,
+  "derivative_works": true,
+  "translation_allowed": true,
+  "import_ready": true,
+  "owner_only_import": true,
+  "variants": [
+    "Acelera SP — Volume 1 [PT-BR]",
+    "Ускоряйся, SP — Том 1 [RU]",
+    "Cosmogonias [PT-BR]",
+    "Космогонии [RU]",
+    "Silent Ruin [EN]",
+    "Безмолвная Руина [RU]"
+  ]
+}
