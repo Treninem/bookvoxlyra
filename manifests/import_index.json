@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-12T00:00:00Z",
+  "packages": [
+    {
+      "path": "books/mezhdu-dvumya-otvetami-final",
+      "manifest_path": "books/mezhdu-dvumya-otvetami-final/manifest.json",
+      "enabled": false,
+      "reason": "payload_present=false"
+    },
+    {
+      "path": "books/public-domain-ru-001-135",
+      "manifest_path": "books/public-domain-ru-001-135/manifest.json",
+      "enabled": false,
+      "reason": "payload_present=false"
+    },
+    {
+      "path": "books/schastye-vo-mne-final",
+      "manifest_path": "books/schastye-vo-mne-final/manifest.json",
+      "enabled": false,
+      "reason": "payload_present=false"
+    },
+    {
+      "path": "comics/open-comics-batch01-stage03",
+      "manifest_path": "comics/open-comics-batch01-stage03/manifest.json",
+      "enabled": false,
+      "reason": "payload_present=false"
+    }
+  ]
+}
