@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "repository": "Treninem/bookvoxlyra",
+  "updated_at": "2026-08-12",
+  "policy": {
+    "completed_only": true,
+    "exclude_partial_or_ongoing": true,
+    "exclude_unverified_rights": true
+  },
+  "completed_content": [
+    {
+      "id": "voxlyra-ru-public-domain-001-135",
+      "kind": "books_batch",
+      "title": "VoxLyra Russian Public Domain Library 001-135",
+      "items": 135,
+      "status": "COMPLETED",
+      "rights": "public_domain",
+      "source_archive": "VoxLyra_Library_001-135_IMPORT_READY.zip",
+      "import_ready_source": true
+    },
+    {
+      "id": "schastye-vo-mne-final",
+      "kind": "book",
+      "title": "Счастье во мне",
+      "language": "ru",
+      "chapters": 170,
+      "status": "COMPLETED",
+      "source_archive": "VoxLyra_Import_Schastye_vo_mne_FINAL.zip",
+      "import_ready_source": true
+    },
+    {
+      "id": "mezhdu-dvumya-otvetami-final",
+      "kind": "book",
+      "title": "Между двумя ответами",
+      "author": "@Treninem",
+      "language": "ru",
+      "chapters": 1020,
+      "status": "COMPLETED",
+      "source_archive": "Между_двумя_ответами_ФИНАЛЬНЫЙ_КОМПЛЕКТ_С_ОБЛОЖКОЙ.zip",
+      "import_ready_source": false,
+      "note": "Final manuscript is complete; normalize to BookVoxLyra package before import."
+    },
+    {
+      "id": "open-comics-batch01-stage03",
+      "kind": "comics_batch",
+      "items": 6,
+      "works": 3,
+      "status": "COMPLETED",
+      "source_archive": "VoxLyra_Open_Comics_BATCH01_STAGE03.zip",
+      "rights_checked": true,
+      "commercial_use": true,
+      "derivative_works": true,
+      "translation_allowed": true,
+      "import_ready_source": true,
+      "variants": [
+        "Acelera SP — Volume 1 [PT-BR]",
+        "Ускоряйся, SP — Том 1 [RU]",
+        "Cosmogonias [PT-BR]",
+        "Космогонии [RU]",
+        "Silent Ruin [EN]",
+        "Безмолвная Руина [RU]"
+      ]
+    }
+  ],
+  "excluded_incomplete_examples": [
+    "Эхо воспоминаний — available library copies only reach chapter 30",
+    "Resonance — partial/continuation working packages",
+    "Пока мы учимся любить — available packages are not marked final"
+  ]
+}
