@@ -39,9 +39,10 @@
       "language": "ru",
       "chapters": 1020,
       "status": "COMPLETED",
-      "source_archive": "Между_двумя_ответами_ФИНАЛЬНЫЙ_КОМПЛЕКТ_С_ОБЛОЖКОЙ.zip",
-      "source_import_ready": false,
-      "normalization_required": true,
+      "source_archive": "VoxLyra_Import_Mezhdu_dvumya_otvetami_FINAL.zip",
+      "source_size_bytes": 2087050,
+      "source_sha256": "8c30d355bde52302041a1866edf53a636d735a698a419dda98b546b875abe46f",
+      "source_import_ready": true,
       "payload_present": false
     },
     {
