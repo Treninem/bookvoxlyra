@@ -13,7 +13,9 @@
   "redistribution": true,
   "derivative_works": true,
   "translation_allowed": true,
-  "import_ready": true,
+  "source_import_ready": true,
+  "payload_present": false,
+  "import_enabled": false,
   "owner_only_import": true,
   "variants": [
     "Acelera SP — Volume 1 [PT-BR]",
