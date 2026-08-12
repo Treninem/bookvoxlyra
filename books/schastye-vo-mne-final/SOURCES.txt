@@ -1,0 +1,13 @@
+Source provenance
+
+Source archive: VoxLyra_Import_Schastye_vo_mne_FINAL(1).zip
+Source archive SHA-256: ba01f38c06b76fd6a6bdf2806c18f5de8e321313151e4f4da2d1d00ba064d594
+Embedded source book: Books/001/book.fb2
+Source FB2 SHA-256: b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393
+Source cover SHA-256: d6f1febb5a934c1b78dab85c75328e555be593920c26ff8322c16a80aa71842f
+Package metadata title: Счастье во мне
+Package metadata author: Treninem
+Verified chapter sequence in the source FB2: 1–170.
+
+For repository storage the FB2 text is prepared for conversion to a standard EPUB without changing chapter order or paragraph text. The final binary payload remains disabled until the converted book file and final cover are committed and covered by the canonical manifest checksums.
+No external third-party source is claimed by this package.
