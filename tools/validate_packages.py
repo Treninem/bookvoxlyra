@@ -146,6 +146,8 @@ def _validate_enabled_package(entry: dict, seen_ids: set[str]) -> tuple[str, int
 
 def validate() -> tuple[int, int]:
     index = _load_json(INDEX_PATH)
+    if index.get("schema_version") != 1:
+        raise ValidationError("manifests/import_index.json: schema_version must be 1")
     packages = index.get("packages")
     if not isinstance(packages, list):
         raise ValidationError("manifests/import_index.json: packages must be a list")
@@ -163,7 +165,9 @@ def validate() -> tuple[int, int]:
         if package_path in seen_paths:
             raise ValidationError(f"duplicate package path in import index: {package_path}")
         seen_paths.add(package_path)
-        if entry.get("enabled") is not True:
+        if "enabled" not in entry or not isinstance(entry["enabled"], bool):
+            raise ValidationError(f"import index entry #{number}: enabled must be true or false")
+        if entry["enabled"] is not True:
             continue
         _, file_count = _validate_enabled_package(entry, seen_ids)
         enabled_count += 1
