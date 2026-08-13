@@ -1,0 +1,25 @@
+{
+  "package_id": "dunning-kruger-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Эффект Даннинга — Крюгера",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T09:47:16Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "59eb0cbf0c89cd8e600151e6cb8ca6fa9a94a494608eb366e120b51046b54838",
+    "LICENSE.txt": "71d45af6f7044875fb08f0be517101530717013ca72c45042269a2cf254defdc",
+    "SOURCES.txt": "8379ac307e9c5e78488b42fefe14e5ab49bf769e104475b87e45846984f28873",
+    "cover.jpg": "59eb0cbf0c89cd8e600151e6cb8ca6fa9a94a494608eb366e120b51046b54838",
+    "description.txt": "01ab081d2f0be072667b5e457fbdf1f3c56361ed77645b87ac1d9aa6f8b4b098",
+    "metadata.json": "509a02b41a85a48cf1050cdb019e6f1df54cce7b8c0278b123c14cdd9a9cd5d5"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
