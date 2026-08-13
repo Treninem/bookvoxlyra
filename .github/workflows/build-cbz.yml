@@ -1,0 +1,71 @@
+name: Build CBZ from comic pages
+
+on:
+  push:
+    paths:
+      - 'comics/**/Chapters/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build book.cbz files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, zipfile
+
+          exts={'.jpg','.jpeg','.png','.webp','.avif','.gif','.bmp','.tif','.tiff'}
+          changed=[]
+          for comic in sorted(Path('comics').iterdir()):
+              if not comic.is_dir():
+                  continue
+              chapters=comic/'Chapters'
+              if not chapters.is_dir():
+                  continue
+              pages=[p for p in chapters.rglob('*') if p.is_file() and p.suffix.lower() in exts]
+              pages.sort(key=lambda p: p.as_posix().lower())
+              if not pages:
+                  continue
+              out=comic/'book.cbz'
+              tmp=comic/'book.cbz.tmp'
+              with zipfile.ZipFile(tmp,'w',compression=zipfile.ZIP_STORED) as z:
+                  for i,p in enumerate(pages,1):
+                      z.write(p, f'{i:05d}{p.suffix.lower()}')
+              new=hashlib.sha256(tmp.read_bytes()).hexdigest()
+              old=hashlib.sha256(out.read_bytes()).hexdigest() if out.exists() else None
+              if new != old:
+                  tmp.replace(out)
+                  changed.append((str(out),len(pages),new))
+              else:
+                  tmp.unlink()
+          for item in changed:
+              print('BUILT',*item)
+          Path('.cbz_changed').write_text('1' if changed else '0')
+          PY
+
+      - name: Commit CBZ files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(cat .cbz_changed)" != "1" ]; then
+            rm -f .cbz_changed
+            echo 'No CBZ changes.'
+            exit 0
+          fi
+          rm -f .cbz_changed
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'comics/**/book.cbz'
+          git commit -m 'Build CBZ files from comic pages'
+          git push
