@@ -1,0 +1,24 @@
+TITLE
+Прими себя
+Original title: Accept Yourself
+
+OFFICIAL EPISODE
+https://www.peppercarrot.com/en/miniFantasyTheater/010.html
+Published: 2024-07-03
+
+ORIGINAL ARTWORK (gfx-only)
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/010_miniFantasyTheater.jpg
+
+ORIGINAL ENGLISH SVG TEXT LAYER
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/010.svg
+
+AUTHOR AND ATTRIBUTION
+Art and scenario: David Revoy
+https://www.davidrevoy.com/
+
+LICENSE
+CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+
+LOCALIZATION NOTE
+The episode itself is wordless. The Russian adaptation preserves the original artwork and localizes only the footer labels embedded in the official SVG layer: the series label, episode number, and license label. The author name and website remain unchanged.
