@@ -1,0 +1,25 @@
+{
+  "package_id": "help-desk-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Служба поддержки",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T08:49:23Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "c3bd12a2a52b1c602fccbdcbe8a2d81c8538e7b8392116f07fa578028467914d",
+    "LICENSE.txt": "a9bc9a83b9f19c5c58f8b210c58ec9fac9395b85834a14de6274fc7b0ffe5f4c",
+    "SOURCES.txt": "b3ca0f39440912272107cc0822b6cf06b5aff2cc771b4d5ab5ca1f7092ad6a76",
+    "cover.jpg": "c3bd12a2a52b1c602fccbdcbe8a2d81c8538e7b8392116f07fa578028467914d",
+    "description.txt": "81f227c53152f98beb8693e6d5b03a08737a4081cba34734cd4ac43b6910afd0",
+    "metadata.json": "142fd6142c293143c8239017409f1d6957190cb5e44156c31d63147e1e9d8146"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
