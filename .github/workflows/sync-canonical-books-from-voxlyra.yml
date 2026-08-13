@@ -1,0 +1,185 @@
+name: Sync canonical books from VoxLyra
+
+on:
+  push:
+    paths:
+      - '.source-sync-trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-book-source-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download validate and install canonical source packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib
+          import json
+          import shutil
+          import time
+          import urllib.error
+          import urllib.request
+          import zipfile
+          from pathlib import Path, PurePosixPath
+
+          base = 'https://voxlyra.bothost.tech/api/canonical-source-export'
+          packages = (
+              'schastye-vo-mne-final',
+              'mezhdu-dvumya-otvetami-final',
+          )
+          work = Path('.canonical-source-sync')
+          shutil.rmtree(work, ignore_errors=True)
+          work.mkdir()
+
+          def sha256(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def download(package_id: str, target: Path) -> None:
+              url = f'{base}/{package_id}'
+              last = None
+              for attempt in range(4):
+                  try:
+                      request = urllib.request.Request(url, headers={'User-Agent': 'VoxLyra-GitHub-Source-Sync/1.0'})
+                      with urllib.request.urlopen(request, timeout=90) as response, target.open('wb') as output:
+                          if response.status != 200:
+                              raise RuntimeError(f'HTTP {response.status}')
+                          shutil.copyfileobj(response, output, length=1024 * 1024)
+                      return
+                  except Exception as exc:
+                      last = exc
+                      if attempt < 3:
+                          time.sleep(4 + attempt * 3)
+              raise RuntimeError(f'Cannot download {package_id}: {last}')
+
+          changed = []
+          for package_id in packages:
+              archive = work / f'{package_id}.zip'
+              download(package_id, archive)
+              if not zipfile.is_zipfile(archive):
+                  raise SystemExit(f'{package_id}: response is not a ZIP archive')
+
+              extract = work / package_id
+              extract.mkdir()
+              with zipfile.ZipFile(archive) as zf:
+                  for info in zf.infolist():
+                      path = PurePosixPath(info.filename)
+                      if path.is_absolute() or '..' in path.parts:
+                          raise SystemExit(f'{package_id}: unsafe ZIP path {info.filename}')
+                      destination = extract.joinpath(*path.parts)
+                      if info.is_dir():
+                          destination.mkdir(parents=True, exist_ok=True)
+                          continue
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      with zf.open(info) as source, destination.open('wb') as output:
+                          shutil.copyfileobj(source, output, length=1024 * 1024)
+
+              source = extract / 'books' / package_id
+              manifest_path = source / 'manifest.json'
+              if not manifest_path.is_file():
+                  raise SystemExit(f'{package_id}: manifest.json missing')
+              manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+              if manifest.get('package_id') != package_id or manifest.get('content_type') != 'book':
+                  raise SystemExit(f'{package_id}: manifest identity mismatch')
+              if manifest.get('payload_present') is not True or manifest.get('import_enabled') is not True:
+                  raise SystemExit(f'{package_id}: source manifest is not enabled')
+
+              files = manifest.get('files')
+              checksums = manifest.get('checksums')
+              if not isinstance(files, list) or not isinstance(checksums, dict) or set(files) != set(checksums):
+                  raise SystemExit(f'{package_id}: invalid files/checksums contract')
+              required = {'book.fb2','book.txt','cover.jpg','metadata.json','description.txt','LICENSE.txt','SOURCES.txt'}
+              if not required.issubset(set(files)):
+                  raise SystemExit(f'{package_id}: canonical binary payload is incomplete')
+              for name in files:
+                  rel = PurePosixPath(str(name))
+                  if rel.is_absolute() or '..' in rel.parts:
+                      raise SystemExit(f'{package_id}: unsafe manifest path {name}')
+                  path = source.joinpath(*rel.parts)
+                  if not path.is_file() or path.stat().st_size <= 0:
+                      raise SystemExit(f'{package_id}: missing/empty payload {name}')
+                  actual = sha256(path)
+                  expected = str(checksums[name]).lower()
+                  if actual != expected:
+                      raise SystemExit(f'{package_id}: SHA256 mismatch for {name}: {actual} != {expected}')
+
+              # FB2 and cover must be meaningful binary payloads, not placeholders.
+              if (source / 'book.fb2').stat().st_size < 100_000:
+                  raise SystemExit(f'{package_id}: book.fb2 is suspiciously small')
+              if (source / 'cover.jpg').read_bytes()[:2] != b'\xff\xd8':
+                  raise SystemExit(f'{package_id}: cover.jpg is not JPEG')
+
+              destination = Path('books') / package_id
+              before = {}
+              if destination.is_dir():
+                  before = {p.relative_to(destination).as_posix(): sha256(p) for p in destination.rglob('*') if p.is_file()}
+              after = {p.relative_to(source).as_posix(): sha256(p) for p in source.rglob('*') if p.is_file()}
+              if before != after:
+                  shutil.rmtree(destination, ignore_errors=True)
+                  shutil.copytree(source, destination)
+                  changed.append(package_id)
+
+          index_path = Path('manifests/import_index.json')
+          index = json.loads(index_path.read_text(encoding='utf-8')) if index_path.is_file() else {'schema_version': 1, 'packages': []}
+          rows = list(index.get('packages') or [])
+          by_path = {str(row.get('path') or ''): row for row in rows if isinstance(row, dict)}
+          for package_id in packages:
+              path = f'books/{package_id}'
+              row = by_path.get(path)
+              if row is None:
+                  row = {'path': path, 'manifest_path': f'{path}/manifest.json'}
+                  rows.append(row)
+                  by_path[path] = row
+              row['enabled'] = True
+              row.pop('reason', None)
+          index['schema_version'] = 1
+          index['generated_at'] = 'generated-by-sync'
+          index['packages'] = rows
+          rendered = json.dumps(index, ensure_ascii=False, indent=2) + '\n'
+          if not index_path.is_file() or index_path.read_text(encoding='utf-8') != rendered:
+              index_path.parent.mkdir(parents=True, exist_ok=True)
+              index_path.write_text(rendered, encoding='utf-8')
+              changed.append('manifests/import_index.json')
+
+          Path('.canonical_sync_changed').write_text('1' if changed else '0', encoding='ascii')
+          print('changed:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Validate repository packages
+        if: always()
+        run: |
+          if [ -f tools/validate_packages.py ]; then python tools/validate_packages.py; fi
+
+      - name: Commit canonical FB2 JPG packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(cat .canonical_sync_changed)" != "1" ]; then
+            rm -rf .canonical-source-sync .canonical_sync_changed
+            echo 'Canonical binary packages already current.'
+            exit 0
+          fi
+          rm -rf .canonical-source-sync .canonical_sync_changed
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add books/schastye-vo-mne-final books/mezhdu-dvumya-otvetami-final manifests/import_index.json
+          git commit -m 'Sync canonical FB2 JPG book payloads'
+          git push
