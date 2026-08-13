@@ -2,59 +2,15 @@
   "schema_version": 1,
   "generated_at": "2026-08-13T09:15:00+03:00",
   "packages": [
-    {
-      "path": "books/gran-realnosti-final",
-      "manifest_path": "books/gran-realnosti-final/manifest.json",
-      "enabled": false,
-      "reason": "canonical package binary publication pending"
-    },
-    {
-      "path": "books/public-domain-ru-001-135",
-      "manifest_path": "books/public-domain-ru-001-135/manifest.json",
-      "enabled": false,
-      "reason": "payload_present=false"
-    },
-    {
-      "path": "books/schastye-vo-mne-final",
-      "manifest_path": "books/schastye-vo-mne-final/manifest.json",
-      "enabled": false,
-      "reason": "canonical package binary publication pending"
-    },
-    {
-      "path": "comics/open-comics-batch01-stage03",
-      "manifest_path": "comics/open-comics-batch01-stage03/manifest.json",
-      "enabled": false,
-      "reason": "payload_present=false"
-    },
-    {
-      "path": "comics/coffee-for-you-ru",
-      "manifest_path": "comics/coffee-for-you-ru/manifest.json",
-      "enabled": false,
-      "reason": "production import and Mini App verification pending"
-    },
-    {
-      "path": "comics/monster-david-revoy-ru",
-      "manifest_path": "comics/monster-david-revoy-ru/manifest.json",
-      "enabled": false,
-      "reason": "production import and Mini App verification pending"
-    },
-    {
-      "path": "comics/my-treasure-david-revoy-ru",
-      "manifest_path": "comics/my-treasure-david-revoy-ru/manifest.json",
-      "enabled": false,
-      "reason": "production import and Mini App verification pending"
-    },
-    {
-      "path": "comics/accessories-david-revoy-ru",
-      "manifest_path": "comics/accessories-david-revoy-ru/manifest.json",
-      "enabled": false,
-      "reason": "production import and Mini App verification pending"
-    },
-    {
-      "path": "comics/too-often-david-revoy-ru",
-      "manifest_path": "comics/too-often-david-revoy-ru/manifest.json",
-      "enabled": false,
-      "reason": "production import and Mini App verification pending"
-    }
+    {"path":"books/gran-realnosti-final","manifest_path":"books/gran-realnosti-final/manifest.json","enabled":false,"reason":"canonical package binary publication pending"},
+    {"path":"books/public-domain-ru-001-135","manifest_path":"books/public-domain-ru-001-135/manifest.json","enabled":false,"reason":"payload_present=false"},
+    {"path":"books/schastye-vo-mne-final","manifest_path":"books/schastye-vo-mne-final/manifest.json","enabled":false,"reason":"canonical package binary publication pending"},
+    {"path":"books/mezhdu-dvumya-otvetami-final","manifest_path":"books/mezhdu-dvumya-otvetami-final/manifest.json","enabled":false,"reason":"canonical package binary publication pending"},
+    {"path":"comics/open-comics-batch01-stage03","manifest_path":"comics/open-comics-batch01-stage03/manifest.json","enabled":false,"reason":"Russian localized Stage03 binary payloads pending"},
+    {"path":"comics/coffee-for-you-ru","manifest_path":"comics/coffee-for-you-ru/manifest.json","enabled":false,"reason":"production import and Mini App verification pending"},
+    {"path":"comics/monster-david-revoy-ru","manifest_path":"comics/monster-david-revoy-ru/manifest.json","enabled":false,"reason":"production import and Mini App verification pending"},
+    {"path":"comics/my-treasure-david-revoy-ru","manifest_path":"comics/my-treasure-david-revoy-ru/manifest.json","enabled":false,"reason":"production import and Mini App verification pending"},
+    {"path":"comics/accessories-david-revoy-ru","manifest_path":"comics/accessories-david-revoy-ru/manifest.json","enabled":false,"reason":"production import and Mini App verification pending"},
+    {"path":"comics/too-often-david-revoy-ru","manifest_path":"comics/too-often-david-revoy-ru/manifest.json","enabled":false,"reason":"production import and Mini App verification pending"}
   ]
 }
