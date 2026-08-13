@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-13T11:02:00+03:00",
+  "generated_at": "2026-08-13T09:15:00+03:00",
   "packages": [
     {"path":"books/gran-realnosti-final","manifest_path":"books/gran-realnosti-final/manifest.json","enabled":false,"reason":"canonical package binary publication pending"},
     {"path":"books/public-domain-ru-001-135","manifest_path":"books/public-domain-ru-001-135/manifest.json","enabled":false,"reason":"payload_present=false"},

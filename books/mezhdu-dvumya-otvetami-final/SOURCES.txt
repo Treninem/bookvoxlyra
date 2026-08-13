@@ -1,0 +1,6 @@
+Canonical title: Между двумя ответами
+Canonical final archive: VoxLyra_Import_Mezhdu_dvumya_otvetami_FINAL.zip
+Expected chapters: 1020
+Expected final FB2 SHA-256: 3bd7213a458fb20d26d2175594ad949e43000e3c75e2905c48a5751b9f8bcb24
+Expected final cover SHA-256: 64706e708bda5979e698fff58f299aa2a5ad37ce794613118c9f8a213aa1088b
+Source: completed VoxLyra author package.

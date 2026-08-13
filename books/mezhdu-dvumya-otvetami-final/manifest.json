@@ -1,0 +1,16 @@
+{
+  "package_id": "mezhdu-dvumya-otvetami-final",
+  "content_type": "book",
+  "title": "Между двумя ответами",
+  "language": "ru",
+  "version": "1.0.0-staging",
+  "status": "COMPLETED_SOURCE_AWAITING_BINARY_SYNC",
+  "chapters": 1020,
+  "payload_present": false,
+  "import_enabled": false,
+  "owner_only_import": true,
+  "expected_final_files": ["book.fb2", "book.txt", "cover.jpg", "description.txt", "metadata.json", "LICENSE.txt", "SOURCES.txt"],
+  "expected_final_fb2_sha256": "3bd7213a458fb20d26d2175594ad949e43000e3c75e2905c48a5751b9f8bcb24",
+  "expected_final_cover_sha256": "64706e708bda5979e698fff58f299aa2a5ad37ce794613118c9f8a213aa1088b",
+  "note": "Do not import until the canonical binary source sync atomically replaces this staging manifest with payload_present=true and import_enabled=true."
+}
