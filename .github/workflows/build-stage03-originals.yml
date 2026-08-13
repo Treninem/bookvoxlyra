@@ -1,0 +1,158 @@
+name: Build Stage03 original CBZ payloads
+
+on:
+  push:
+    paths:
+      - '.stage03-originals-trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage03-originals
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure PDF renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v pdftoppm >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq poppler-utils
+          fi
+          pdftoppm -v 2>&1 | head -1
+
+      - name: Download sources and build verified CBZ packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, json, shutil, subprocess, urllib.request, zipfile
+          from pathlib import Path
+
+          ROOT=Path('comics/open-comics-batch01-stage03/Books')
+          WORK=Path('.stage03-originals')
+          shutil.rmtree(WORK,ignore_errors=True)
+          WORK.mkdir()
+
+          items=[
+            {
+              'folder':'001_Acelera_SP_V01_PT-BR', 'title':'Acelera SP — Volume 1 [PT-BR]',
+              'language':'pt-BR','expected_pages':36,
+              'url':'https://upload.wikimedia.org/wikipedia/commons/b/b9/AceleraSP.pdf',
+              'license':'CC BY-SA 3.0 BR','license_source':'https://commons.wikimedia.org/wiki/File:AceleraSP.pdf',
+              'official_source':'https://cadusimoes.com',
+              'description':'Em uma São Paulo cyberpunk de futuro próximo, serviços e espaços públicos foram privatizados, enquanto comunidades autônomas ZAD resistem. A história acompanha viagens que conectam entregadores, motoristas e cidadãos presos entre corporações, polícia privada e redes de solidariedade.',
+              'author':'Cadu Simões','artist':'Juliano Kaapora; Sam Hart',
+              'attribution':'Acelera SP — roteiro/edição Cadu Simões; arte Juliano Kaapora; lápis Sam Hart; capa/logotipo Gil Tokio.',
+            },
+            {
+              'folder':'003_Cosmogonias_V01_PT-BR','title':'Cosmogonias','language':'pt-BR','expected_pages':36,
+              'url':'https://archive.org/download/Cosmogonias/Cosmogonias.pdf',
+              'license':'CC BY-SA 3.0 BR','license_source':'https://archive.org/details/Cosmogonias',
+              'official_source':'https://cadusimoes.com/cosmogonias/',
+              'description':'Antologia de histórias em quadrinhos curtas sobre criação e destruição — mundos, vidas e narrativas — reunida por Cadu Simões em uma edição concluída de 2016.',
+              'author':'Cadu Simões','artist':'Jozz; Mario Cau; Mario Cesar; Juliano Kaapora; Camila Torrano; Will; Gil Tokio',
+              'attribution':'Cadu Simões and credited artists; CC BY-SA 3.0 BR.',
+            },
+            {
+              'folder':'005_Silent_Ruin_V01_EN','title':'Silent Ruin — Volume 1 [EN]','language':'en','expected_pages':10,
+              'url':'https://threatcasting.asu.edu/sites/g/files/litvpz1036/files/2019-11/Silent-Ruin_v2_low-res.pdf',
+              'license':'Public Domain','license_source':'https://commons.wikimedia.org/wiki/File:Silent_Ruin_(2018),_by_Brian_David_Johnson.pdf',
+              'official_source':'https://threatcasting.asu.edu/sites/g/files/litvpz1036/files/2019-11/Silent-Ruin_v2_low-res.pdf',
+              'description':'In 2027, an escalating border crisis collides with autonomous weapons, cyberattacks and electronic warfare. A NATO armored unit discovers how quickly a technologically advanced force can lose its eyes, communications and control when the digital battlefield turns against it.',
+              'author':'Brian David Johnson','artist':'Don Hudson; Kinsun Lo',
+              'attribution':'Written by Brian David Johnson; Creative Direction: Sandy Winkelman; Illustration: Don Hudson & Kinsun Lo; Army Cyber Institute at West Point.',
+            },
+          ]
+
+          def sha256(path:Path)->str:
+              h=hashlib.sha256()
+              with path.open('rb') as f:
+                  for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
+              return h.hexdigest()
+
+          changed=[]
+          for item in items:
+              folder=item['folder']
+              source=WORK/f'{folder}.pdf'
+              request=urllib.request.Request(item['url'],headers={'User-Agent':'VoxLyra-Open-Comics/1.0'})
+              with urllib.request.urlopen(request,timeout=120) as response, source.open('wb') as output:
+                  if response.status != 200: raise RuntimeError(f'{folder}: HTTP {response.status}')
+                  shutil.copyfileobj(response,output,length=1024*1024)
+              if source.stat().st_size < 100_000 or source.read_bytes()[:4] != b'%PDF':
+                  raise RuntimeError(f'{folder}: source is not a valid PDF payload')
+
+              render=WORK/f'{folder}-pages'
+              render.mkdir()
+              subprocess.run(['pdftoppm','-jpeg','-r','150','-jpegopt','quality=90,progressive=y,optimize=y',str(source),str(render/'page')],check=True)
+              pages=sorted(render.glob('page-*.jpg'))
+              if len(pages) != int(item['expected_pages']):
+                  raise RuntimeError(f"{folder}: expected {item['expected_pages']} pages, got {len(pages)}")
+
+              package=ROOT/folder
+              package.mkdir(parents=True,exist_ok=True)
+              cbz=package/'book.cbz'
+              tmp=package/'book.cbz.tmp'
+              with zipfile.ZipFile(tmp,'w',compression=zipfile.ZIP_STORED) as zf:
+                  for idx,page in enumerate(pages,1):
+                      zf.write(page,f'{idx:05d}.jpg')
+              tmp.replace(cbz)
+              shutil.copy2(pages[0],package/'cover.jpg')
+              (package/'description.txt').write_text(item['description']+'\n',encoding='utf-8')
+              metadata={
+                  'title':item['title'],'language':item['language'],'author':item['author'],'artist':item['artist'],
+                  'content_type':'comic','reading_mode':'comic','status':'COMPLETED','page_count':len(pages),
+                  'official_source':item['official_source'],'license_source':item['license_source'],'license':item['license'],
+                  'commercial_use':True,'redistribution':True,'derivative_works':True,'translation_allowed':True,
+                  'attribution':item['attribution'],'source_pdf_sha256':sha256(source),'book_cbz_sha256':sha256(cbz),
+                  'cover_sha256':sha256(package/'cover.jpg'),
+              }
+              (package/'metadata.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+              (package/'LICENSE.txt').write_text(
+                  f"Title: {item['title']}\nLicense: {item['license']}\nLicense source: {item['license_source']}\n"
+                  f"Official/source file: {item['official_source']}\nRedistribution: YES\nCommercial use: YES\n"
+                  f"Derivative works: YES\nTranslation: YES\nAttribution: {item['attribution']}\n",
+                  encoding='utf-8'
+              )
+              manifest={
+                  'package_id':folder,'content_type':'comic','title':item['title'],'language':item['language'],
+                  'status':'COMPLETED','page_count':len(pages),'payload_present':True,'import_enabled':False,
+                  'files':['book.cbz','cover.jpg','description.txt','metadata.json','LICENSE.txt'],
+                  'checksums':{n:sha256(package/n) for n in ['book.cbz','cover.jpg','description.txt','metadata.json','LICENSE.txt']},
+                  'note':'Binary payload complete. Root Stage03 remains disabled until all six language editions are present and verified.'
+              }
+              (package/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+              changed.append(folder)
+              print(json.dumps({'folder':folder,'pages':len(pages),'cbz_size':cbz.stat().st_size,'cbz_sha256':sha256(cbz),'cover_size':(package/'cover.jpg').stat().st_size},ensure_ascii=False))
+
+          Path('.stage03_originals_changed').write_text('1' if changed else '0')
+          PY
+
+      - name: Commit real CBZ and JPG payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(cat .stage03_originals_changed)" != "1" ]; then
+            rm -rf .stage03-originals .stage03_originals_changed
+            exit 0
+          fi
+          rm -rf .stage03-originals .stage03_originals_changed
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add comics/open-comics-batch01-stage03/Books/001_Acelera_SP_V01_PT-BR \
+                  comics/open-comics-batch01-stage03/Books/003_Cosmogonias_V01_PT-BR \
+                  comics/open-comics-batch01-stage03/Books/005_Silent_Ruin_V01_EN
+          git commit -m 'Add real Stage03 original CBZ JPG payloads'
+          git push
