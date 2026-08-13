@@ -1,0 +1,10 @@
+Title: Silent Ruin — Volume 1 [EN]
+License: Public Domain
+License source: https://commons.wikimedia.org/wiki/File:Silent_Ruin_(2018),_by_Brian_David_Johnson.pdf
+Official source: https://threatcasting.asu.edu/sites/g/files/litvpz1036/files/2019-11/Silent-Ruin_v2_low-res.pdf
+Binary source used: https://upload.wikimedia.org/wikipedia/commons/2/2b/Silent_Ruin_%282018%29%2C_by_Brian_David_Johnson.pdf
+Redistribution: YES
+Commercial use: YES
+Derivative works: YES
+Translation: YES
+Attribution: Written by Brian David Johnson; Creative Direction: Sandy Winkelman; Illustration: Don Hudson & Kinsun Lo; Army Cyber Institute at West Point.

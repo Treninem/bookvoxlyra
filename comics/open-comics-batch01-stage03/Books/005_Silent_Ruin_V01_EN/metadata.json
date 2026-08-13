@@ -1,0 +1,22 @@
+{
+  "title": "Silent Ruin — Volume 1 [EN]",
+  "language": "en",
+  "author": "Brian David Johnson",
+  "artist": "Don Hudson; Kinsun Lo",
+  "content_type": "comic",
+  "reading_mode": "comic",
+  "status": "COMPLETED",
+  "page_count": 10,
+  "official_source": "https://threatcasting.asu.edu/sites/g/files/litvpz1036/files/2019-11/Silent-Ruin_v2_low-res.pdf",
+  "binary_source": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Silent_Ruin_%282018%29%2C_by_Brian_David_Johnson.pdf",
+  "license_source": "https://commons.wikimedia.org/wiki/File:Silent_Ruin_(2018),_by_Brian_David_Johnson.pdf",
+  "license": "Public Domain",
+  "commercial_use": true,
+  "redistribution": true,
+  "derivative_works": true,
+  "translation_allowed": true,
+  "attribution": "Written by Brian David Johnson; Creative Direction: Sandy Winkelman; Illustration: Don Hudson & Kinsun Lo; Army Cyber Institute at West Point.",
+  "source_pdf_sha256": "d49a9d30253d9b7fa3e5394fabf075f2a0ba25c64cacd5b9c39554503c5c4d03",
+  "book_cbz_sha256": "a0373653449755efd3db5762ddfcab3aba311444edb196652ab27698ffb0a327",
+  "cover_sha256": "417c8cdd3ac208f19bd8ff9df888678333f3509dd751869d8f0947e8a77e341e"
+}

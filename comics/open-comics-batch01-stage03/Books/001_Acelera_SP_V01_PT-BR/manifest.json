@@ -1,0 +1,25 @@
+{
+  "package_id": "001_Acelera_SP_V01_PT-BR",
+  "content_type": "comic",
+  "title": "Acelera SP — Volume 1 [PT-BR]",
+  "language": "pt-BR",
+  "status": "COMPLETED",
+  "page_count": 36,
+  "payload_present": true,
+  "import_enabled": false,
+  "files": [
+    "book.cbz",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json",
+    "LICENSE.txt"
+  ],
+  "checksums": {
+    "book.cbz": "116bd630aef5d904798f82a4c8c8be9e1c40308905cc89320de3477e603ceb70",
+    "cover.jpg": "c689b3ee3f4627df138ded37d5f4db8b27095733c2ab3dc00360bf669ef25cef",
+    "description.txt": "065707885eaebb6df9f62edbaa5ae69091fa0e4944acb536f5a72263eb90b8e6",
+    "metadata.json": "23583e1e3f2030b9d1236431a7e2acba8d4571a53a5be77a663efc2fd7fbbb30",
+    "LICENSE.txt": "70c3a44620cb0cbc30058b7d935f95ebb083425d6fc480f126a326da0531188b"
+  },
+  "note": "Binary payload complete. Root Stage03 remains disabled until all six language editions are present and verified."
+}

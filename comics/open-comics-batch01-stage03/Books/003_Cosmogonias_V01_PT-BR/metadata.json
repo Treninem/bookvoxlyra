@@ -1,0 +1,22 @@
+{
+  "title": "Cosmogonias",
+  "language": "pt-BR",
+  "author": "Cadu Simões",
+  "artist": "Jozz; Mario Cau; Mario Cesar; Juliano Kaapora; Camila Torrano; Will; Gil Tokio",
+  "content_type": "comic",
+  "reading_mode": "comic",
+  "status": "COMPLETED",
+  "page_count": 36,
+  "official_source": "https://cadusimoes.com/cosmogonias/",
+  "binary_source": "https://archive.org/download/Cosmogonias/Cosmogonias.pdf",
+  "license_source": "https://archive.org/details/Cosmogonias",
+  "license": "CC BY-SA 3.0 BR",
+  "commercial_use": true,
+  "redistribution": true,
+  "derivative_works": true,
+  "translation_allowed": true,
+  "attribution": "Cadu Simões and credited artists; CC BY-SA 3.0 BR.",
+  "source_pdf_sha256": "c01b6387f7d25c14bf16ffe92787bc2bdfa622a9a6359ba6b3afb0e373660209",
+  "book_cbz_sha256": "36dafba218c246683f32476829e32f7b398f6b02a3c148b7814887998b22f5ea",
+  "cover_sha256": "01c74ade22cdc11e9d179097956293ac6d2e732bc883d55a80c12b5b6d8fcf38"
+}

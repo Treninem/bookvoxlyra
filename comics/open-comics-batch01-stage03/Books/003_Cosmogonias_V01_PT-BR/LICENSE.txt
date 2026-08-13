@@ -1,0 +1,10 @@
+Title: Cosmogonias
+License: CC BY-SA 3.0 BR
+License source: https://archive.org/details/Cosmogonias
+Official source: https://cadusimoes.com/cosmogonias/
+Binary source used: https://archive.org/download/Cosmogonias/Cosmogonias.pdf
+Redistribution: YES
+Commercial use: YES
+Derivative works: YES
+Translation: YES
+Attribution: Cadu Simões and credited artists; CC BY-SA 3.0 BR.

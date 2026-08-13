@@ -1,0 +1,25 @@
+{
+  "package_id": "005_Silent_Ruin_V01_EN",
+  "content_type": "comic",
+  "title": "Silent Ruin — Volume 1 [EN]",
+  "language": "en",
+  "status": "COMPLETED",
+  "page_count": 10,
+  "payload_present": true,
+  "import_enabled": false,
+  "files": [
+    "book.cbz",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json",
+    "LICENSE.txt"
+  ],
+  "checksums": {
+    "book.cbz": "a0373653449755efd3db5762ddfcab3aba311444edb196652ab27698ffb0a327",
+    "cover.jpg": "417c8cdd3ac208f19bd8ff9df888678333f3509dd751869d8f0947e8a77e341e",
+    "description.txt": "996ba1f7543d61e3723b837c28d34c2685a44ca93b4d8c41a83ee17fc634f050",
+    "metadata.json": "55623e61cd55351453ed820b09ba3873adbf9fd47435df621e59fbced4791125",
+    "LICENSE.txt": "fccef9eb025077a6bf4ac01dcd007f48a0a9531fa56ede481fd8b0f5c01c450a"
+  },
+  "note": "Binary payload complete. Root Stage03 remains disabled until all six language editions are present and verified."
+}

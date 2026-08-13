@@ -1,0 +1,25 @@
+{
+  "package_id": "003_Cosmogonias_V01_PT-BR",
+  "content_type": "comic",
+  "title": "Cosmogonias",
+  "language": "pt-BR",
+  "status": "COMPLETED",
+  "page_count": 36,
+  "payload_present": true,
+  "import_enabled": false,
+  "files": [
+    "book.cbz",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json",
+    "LICENSE.txt"
+  ],
+  "checksums": {
+    "book.cbz": "36dafba218c246683f32476829e32f7b398f6b02a3c148b7814887998b22f5ea",
+    "cover.jpg": "01c74ade22cdc11e9d179097956293ac6d2e732bc883d55a80c12b5b6d8fcf38",
+    "description.txt": "94519881c305b3fa50f398d2e7bdea377d346c2820b1bcb45921e9c58482401a",
+    "metadata.json": "3df43b37f6a3c981b380d6056e3b8bc55c8aafbc4d162552f148093a964c61a9",
+    "LICENSE.txt": "1d8b3cd4bb1e747903f12c2444748df0f8cf226ec5af3be1286ddd2274f11dd9"
+  },
+  "note": "Binary payload complete. Root Stage03 remains disabled until all six language editions are present and verified."
+}
