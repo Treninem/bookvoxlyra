@@ -1,0 +1,24 @@
+Официальная страница произведения:
+https://www.peppercarrot.com/en/miniFantasyTheater/009.html
+
+Официальный файл страницы (English, low resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/low-res/en_009_miniFantasyTheater.jpg
+
+Официальный исходный рисунок без текста (high resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/009_miniFantasyTheater.jpg
+
+Официальный редактируемый английский текстовый слой SVG:
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/009.svg
+
+Дата публикации на официальной странице: 26 июня 2024 года.
+Лицензия, указанная автором: CC BY-SA 4.0.
+Автор рисунка и сценария: David Revoy.
+
+SHA-256 полученного исходного JPEG:
+20362c185a1cfc5ab85f22d1e967bd9314f8b94b0e16f549e1b8178263375306
+
+Произведение не содержит диалогов. На странице локализованы название серии,
+номер эпизода и лицензионная подпись. Порядок чтения: слева направо, сверху вниз.
+
+Локализация собрана из официального рисунка без текста и изменённой копии
+официального SVG-слоя. Персонажи, панели и фон не перерисовывались.
