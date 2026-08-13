@@ -9,17 +9,11 @@
   "payload_present": false,
   "import_enabled": false,
   "owner_only_import": true,
-  "expected_final_files": [
-    "book.fb2",
-    "book.txt",
-    "cover.jpg",
-    "metadata.json",
-    "description.txt",
-    "LICENSE.txt",
-    "SOURCES.txt"
-  ],
+  "expected_final_files": ["book.fb2", "book.txt", "cover.jpg", "metadata.json", "description.txt", "LICENSE.txt", "SOURCES.txt"],
   "expected_final_fb2_sha256": "b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393",
   "expected_final_cover_sha256": "d6f1febb5a934c1b78dab85c75328e555be593920c26ff8322c16a80aa71842f",
   "expected_chapters": 170,
-  "note": "Do not import until the canonical binary source sync atomically replaces this staging manifest with payload_present=true and import_enabled=true."
+  "interim_cover_present": true,
+  "interim_cover_source": "live VoxLyra /media/cover/2229",
+  "note": "A real JPEG cover is present, but the canonical final FB2 is still pending. Do not import until the canonical binary source sync atomically replaces this staging manifest with payload_present=true and import_enabled=true."
 }
