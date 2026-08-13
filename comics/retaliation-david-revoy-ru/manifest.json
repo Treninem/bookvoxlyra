@@ -1,0 +1,25 @@
+{
+  "package_id": "retaliation-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Ответный удар",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T13:47:04Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "c808c7da721f3c54caecb7a66d0155fce222b229a6dc0950f4f63c61b5b96e95",
+    "LICENSE.txt": "b6002148e7a4be0f1508ec1c28712dbb96acafdb1a71c64ca0c74e4919871906",
+    "SOURCES.txt": "7adc024cfe3ab9541157c924d4843c43b64b4bbd3261acbc792a8a0642e54a14",
+    "cover.jpg": "c808c7da721f3c54caecb7a66d0155fce222b229a6dc0950f4f63c61b5b96e95",
+    "description.txt": "143a546eb0bc56617bb20dae7c52a92ad880e5ac90efecd72f5dfcc0ee47088c",
+    "metadata.json": "8f2e448c71b0cb7c2a322851dd08a4469e0078ae75481f07d0bf4778a85b8e41"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
