@@ -1,0 +1,24 @@
+Официальная страница произведения:
+https://www.peppercarrot.com/en/miniFantasyTheater/005.html
+
+Официальный файл страницы (English, low resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/low-res/en_005_miniFantasyTheater.jpg
+
+Официальный исходный рисунок без текста (high resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/005_miniFantasyTheater.jpg
+
+Официальный редактируемый английский текстовый слой SVG:
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/005.svg
+
+Дата публикации на официальной странице: 29 мая 2024 года.
+Лицензия, указанная автором: CC BY-SA 4.0.
+Автор рисунка и сценария: David Revoy.
+
+SHA-256 полученного исходного JPEG:
+240451dc526a4e886062f71fe5fc89ba1aa26d6ea450d2691935897789cca79d
+
+Русский текст нанесён непосредственно на страницу. Порядок чтения:
+слева направо, сверху вниз.
+
+Локализация собрана из официального рисунка без текста и изменённой копии
+официального SVG-слоя. Персонажи, панели и фон не перерисовывались.
