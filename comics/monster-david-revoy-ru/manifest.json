@@ -1,0 +1,25 @@
+{
+  "package_id": "monster-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Монстр",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T06:57:18Z",
+  "files": [
+    "Chapters/001/page-01.png",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.png",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.png": "87a2dc8011d5ed28ad1cc877473c5c77a12238c8249af8bab69a441ebafcc502",
+    "LICENSE.txt": "6fdc8c2a36d8ab42a028488e628af245ebae543730cc1de9bc117a47d7886d33",
+    "SOURCES.txt": "506a7e8a6dbbefb8ec7f25feff3496103d53f5e2951d0333d0123f170d42c7ea",
+    "cover.png": "87a2dc8011d5ed28ad1cc877473c5c77a12238c8249af8bab69a441ebafcc502",
+    "description.txt": "204bc1ed5835bc50d7302678a8e85cd41b5f430769fb5a3961154eaf53f9edd0",
+    "metadata.json": "c00b579e1042c36b63a56b60c02ec10c289bd2dc83b71e3135687ab6bcf80b70"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}

@@ -1,0 +1,25 @@
+{
+  "package_id": "my-treasure-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Моё сокровище",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T06:57:18Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "6347b3ca8aa22f17b9880459699e0f177a21e839fce6243e5972d3107c48ca2c",
+    "LICENSE.txt": "0bd1bc541e2bf73acccaa0780ec5f36c3a22622aa7a30cedcb664b8ebb4f33ab",
+    "SOURCES.txt": "12291a0589f2a414f6537968bd7c57d1a0d279221b08ca839c56e45e36269d44",
+    "cover.jpg": "0eb9371568735717894cbdf7b496e441e492b38ab686bb9f2bef746aa335e4ad",
+    "description.txt": "cd224a51777b2045cd5d57722add4712c06ef3831604a798f3e7de18c9f999a1",
+    "metadata.json": "c546b07a42ae45b115d29120c72385df9ed7d4815a7092650785c15e5ae5ce30"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
