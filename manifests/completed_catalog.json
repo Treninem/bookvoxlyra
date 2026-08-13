@@ -1,12 +1,14 @@
 {
   "schema_version": 1,
   "repository": "Treninem/bookvoxlyra",
-  "updated_at": "2026-08-12",
+  "updated_at": "2026-08-13",
   "policy": {
     "completed_only": true,
     "exclude_partial_or_ongoing": true,
     "exclude_unverified_rights": true,
-    "import_requires_payload_present": true
+    "canonical_latest_title_and_revision_only": true,
+    "import_requires_payload_present": true,
+    "import_requires_all_required_binary_files": true
   },
   "completed_content": [
     {
@@ -14,11 +16,13 @@
       "kind": "books_batch",
       "title": "VoxLyra Russian Public Domain Library 001-135",
       "items": 135,
-      "status": "COMPLETED",
+      "status": "COMPLETED_SOURCE",
       "rights": "public_domain",
       "source_archive": "VoxLyra_Library_001-135_IMPORT_READY.zip",
       "source_import_ready": true,
-      "payload_present": false
+      "payload_present": false,
+      "import_enabled": false,
+      "missing_binary": ["book/text/epub payloads and covers for 135 items"]
     },
     {
       "id": "schastye-vo-mne-final",
@@ -26,10 +30,15 @@
       "title": "Счастье во мне",
       "language": "ru",
       "chapters": 170,
-      "status": "COMPLETED",
+      "status": "COMPLETED_SOURCE_AWAITING_FB2",
       "source_archive": "VoxLyra_Import_Schastye_vo_mne_FINAL.zip",
       "source_import_ready": true,
-      "payload_present": false
+      "jpg_present": true,
+      "jpg_source": "live VoxLyra canonical cover for book_id 2229",
+      "fb2_present": false,
+      "payload_present": false,
+      "import_enabled": false,
+      "expected_final_fb2_sha256": "b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393"
     },
     {
       "id": "mezhdu-dvumya-otvetami-final",
@@ -38,19 +47,23 @@
       "author": "@Treninem",
       "language": "ru",
       "chapters": 1020,
-      "status": "COMPLETED",
+      "status": "COMPLETED_SOURCE_AWAITING_FB2",
       "source_archive": "VoxLyra_Import_Mezhdu_dvumya_otvetami_FINAL.zip",
       "source_size_bytes": 2087050,
       "source_sha256": "8c30d355bde52302041a1866edf53a636d735a698a419dda98b546b875abe46f",
       "source_import_ready": true,
-      "payload_present": false
+      "jpg_present": true,
+      "fb2_present": false,
+      "payload_present": false,
+      "import_enabled": false,
+      "expected_final_fb2_sha256": "3bd7213a458fb20d26d2175594ad949e43000e3c75e2905c48a5751b9f8bcb24"
     },
     {
       "id": "open-comics-batch01-stage03",
       "kind": "comics_batch",
       "items": 6,
       "works": 3,
-      "status": "COMPLETED",
+      "status": "COMPLETED_SOURCE_PARTIALLY_MATERIALIZED",
       "source_archive": "VoxLyra_Open_Comics_BATCH01_STAGE03.zip",
       "rights_checked": true,
       "commercial_use": true,
@@ -58,7 +71,18 @@
       "derivative_works": true,
       "translation_allowed": true,
       "source_import_ready": true,
+      "physical_binary_variants": {
+        "001_Acelera_SP_V01_PT-BR": {"cbz_present": true, "jpg_present": true, "pages": 36},
+        "003_Cosmogonias_V01_PT-BR": {"cbz_present": true, "jpg_present": true, "pages": 36},
+        "005_Silent_Ruin_V01_EN": {"cbz_present": true, "jpg_present": true, "pages": 10}
+      },
+      "pending_binary_variants": [
+        "002_Uskoryaysya_SP_V01_RU",
+        "004_Космогонии_V01_RU",
+        "006_Bezmolvnaya_Ruina_V01_RU"
+      ],
       "payload_present": false,
+      "import_enabled": false,
       "variants": [
         "Acelera SP — Volume 1 [PT-BR]",
         "Ускоряйся, SP — Том 1 [RU]",
@@ -73,7 +97,7 @@
     "Эхо воспоминаний — available library copies only reach chapter 30",
     "Resonance — working/partial continuation packages",
     "Пока мы учимся любить — available packages are not marked final",
-    "Грань реальности — catalog presence found, but no verified final source archive found",
+    "Грань реальности — catalog presence/staging metadata is not proof of a verified final binary source",
     "Последнее тепло, для тебя — catalog presence found, but no verified final source archive found",
     "Тридцать ночей у Волка — catalog presence found, but no verified final source archive found"
   ]
