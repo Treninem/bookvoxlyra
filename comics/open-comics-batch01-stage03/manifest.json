@@ -2,7 +2,7 @@
   "schema_version": 1,
   "package_id": "open-comics-batch01-stage03",
   "kind": "comics_batch",
-  "status": "COMPLETED",
+  "status": "COMPLETED_SOURCE_PARTIALLY_MATERIALIZED",
   "works": 3,
   "items": 6,
   "source_archive": "VoxLyra_Open_Comics_BATCH01_STAGE03.zip",
@@ -17,6 +17,16 @@
   "payload_present": false,
   "import_enabled": false,
   "owner_only_import": true,
+  "binary_variants_present": [
+    "001_Acelera_SP_V01_PT-BR",
+    "003_Cosmogonias_V01_PT-BR",
+    "005_Silent_Ruin_V01_EN"
+  ],
+  "binary_variants_pending": [
+    "002_Uskoryaysya_SP_V01_RU",
+    "004_Космогонии_V01_RU",
+    "006_Bezmolvnaya_Ruina_V01_RU"
+  ],
   "variants": [
     "Acelera SP — Volume 1 [PT-BR]",
     "Ускоряйся, SP — Том 1 [RU]",
@@ -24,5 +34,6 @@
     "Космогонии [RU]",
     "Silent Ruin [EN]",
     "Безмолвная Руина [RU]"
-  ]
+  ],
+  "note": "Three original-language editions now contain real book.cbz and cover.jpg payloads. The batch remains disabled until the three real Russian localized CBZ/JPG payloads are physically present and verified."
 }
