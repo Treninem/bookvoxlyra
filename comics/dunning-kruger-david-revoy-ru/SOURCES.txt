@@ -1,0 +1,24 @@
+Официальная страница произведения:
+https://www.peppercarrot.com/en/miniFantasyTheater/007.html
+
+Официальный файл страницы (English, low resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/low-res/en_007_miniFantasyTheater.jpg
+
+Официальный исходный рисунок без текста (high resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/007_miniFantasyTheater.jpg
+
+Официальный редактируемый английский текстовый слой SVG:
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/007.svg
+
+Дата публикации на официальной странице: 12 июня 2024 года.
+Лицензия, указанная автором: CC BY-SA 4.0.
+Автор рисунка и сценария: David Revoy.
+
+SHA-256 полученного исходного JPEG:
+c93e81c948b5b6899fe73bf3681be4cb3e0b13c906ddb85e68ac0733e5bab699
+
+Русский текст нанесён непосредственно на страницу. Порядок чтения:
+слева направо, сверху вниз.
+
+Локализация собрана из официального рисунка без текста и изменённой копии
+официального SVG-слоя. Персонажи, панели и фон не перерисовывались.
