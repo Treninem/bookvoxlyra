@@ -6,7 +6,7 @@
       "path": "books/gran-realnosti-final",
       "manifest_path": "books/gran-realnosti-final/manifest.json",
       "enabled": false,
-      "reason": "binary payload commit in progress"
+      "reason": "canonical package binary publication pending"
     },
     {
       "path": "books/public-domain-ru-001-135",
@@ -18,7 +18,7 @@
       "path": "books/schastye-vo-mne-final",
       "manifest_path": "books/schastye-vo-mne-final/manifest.json",
       "enabled": false,
-      "reason": "binary payload commit in progress"
+      "reason": "canonical package binary publication pending"
     },
     {
       "path": "comics/open-comics-batch01-stage03",
