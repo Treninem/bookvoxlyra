@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-13T00:24:00+03:00",
+  "generated_at": "2026-08-13T08:45:00+03:00",
   "packages": [
     {
-      "path": "books/mezhdu-dvumya-otvetami-final",
-      "manifest_path": "books/mezhdu-dvumya-otvetami-final/manifest.json",
+      "path": "books/gran-realnosti-final",
+      "manifest_path": "books/gran-realnosti-final/manifest.json",
       "enabled": false,
-      "reason": "final source archive located and rights provenance staged; book binary and final cover still need repository commit"
+      "reason": "canonical rename recovered; source-ready EPUB and canonical cover prepared, binary repository commit still pending"
     },
     {
       "path": "books/public-domain-ru-001-135",

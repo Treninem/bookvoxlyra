@@ -1,0 +1,20 @@
+VoxLyra platform-original provenance record
+
+Canonical title: Грань реальности
+Previous working/final-package title: Между двумя ответами
+Author / rights-holder name recorded in the supplied final package: @Treninem
+License statement in the supplied final package: «Оригинальное авторское произведение. Все права защищены.»
+VoxLyra import classification: platform_original
+Rights check marker: true
+
+Rename provenance:
+- the work was later explicitly renamed by the project owner from «Между двумя ответами» to «Грань реальности»;
+- the later canonical cover carrying «Грань реальности» and @Treninem was recovered from the same project-owner file library;
+- the rename changes the publication title/cover, not the underlying 1–1020 chapter text.
+
+Basis of this record:
+- the source archive was supplied from the VoxLyra project owner's file library;
+- both package metadata and the embedded source book identify the author as @Treninem;
+- the package itself labels the work as an original authorial work.
+
+This record does not assert any third-party licence or third-party source.

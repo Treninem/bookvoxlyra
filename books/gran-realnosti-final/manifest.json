@@ -1,0 +1,24 @@
+{
+  "package_id": "gran-realnosti-final",
+  "content_type": "book",
+  "title": "Грань реальности",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T08:45:00+03:00",
+  "files": [
+    "metadata.json",
+    "description.txt",
+    "cover.png",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "book.epub"
+  ],
+  "checksums": {
+    "metadata.json": "95b171d0139c12b4a28f0c229702c5bfff5ef4035b9198d645c664fbcb0dfb82",
+    "description.txt": "a33197c26cf8b03200cc185b2d496147ac425614ad193243b87757b11c7c19a7",
+    "cover.png": "e091b0973dd892c90ff8c482d4c5585af1b88e38ced62b95bb1dac6079b168ec",
+    "LICENSE.txt": "0474343ced95462cbaee9f9d71e703addc0d57bb78741352a10360b93bccdabe",
+    "SOURCES.txt": "0a744d69494f50c5a31114484887f402e14c23c9609567a5bd75db797733e854",
+    "book.epub": "eaf4db6fece873ec067e66fa985619114bebdeabf48aadc790389a1882416e78"
+  }
+}

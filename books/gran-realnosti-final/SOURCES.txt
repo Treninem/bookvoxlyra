@@ -1,0 +1,15 @@
+Source provenance
+
+Canonical title: Грань реальности
+Previous title in recovered source archive: Между двумя ответами
+Source archive: VoxLyra_Import_Mezhdu_dvumya_otvetami_FINAL.zip
+Source archive SHA-256: 8c30d355bde52302041a1866edf53a636d735a698a419dda98b546b875abe46f
+Embedded source book: Books/001/book.fb2
+Source FB2 SHA-256: 3bd7213a458fb20d26d2175594ad949e43000e3c75e2905c48a5751b9f8bcb24
+Canonical cover source: project-owner file library image generated for the explicit rename request to «Грань реальности»
+Canonical cover SHA-256: e091b0973dd892c90ff8c482d4c5585af1b88e38ced62b95bb1dac6079b168ec
+Author: @Treninem
+
+For repository storage the FB2 text was converted to a standard EPUB without changing chapter order or paragraph text.
+Only publication metadata/title was changed to the later canonical title «Грань реальности».
+No external third-party source is claimed by this package.
