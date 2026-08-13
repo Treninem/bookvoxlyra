@@ -1,0 +1,24 @@
+Официальная страница произведения:
+https://www.peppercarrot.com/en/miniFantasyTheater/008.html
+
+Официальный файл страницы (English, low resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/low-res/en_008_miniFantasyTheater.jpg
+
+Официальный исходный рисунок без текста (high resolution):
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/008_miniFantasyTheater.jpg
+
+Официальный редактируемый английский текстовый слой SVG:
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/008.svg
+
+Дата публикации на официальной странице: 19 июня 2024 года.
+Лицензия, указанная автором: CC BY-SA 4.0.
+Автор рисунка и сценария: David Revoy.
+
+SHA-256 полученного исходного JPEG:
+84dd27541e26e04645eabb9cb087a3eefa3f4e8c1287bb8b67a371b96975e9c9
+
+Произведение не содержит диалогов. На странице локализованы название серии,
+номер эпизода и лицензионная подпись. Порядок чтения: слева направо, сверху вниз.
+
+Локализация собрана из официального рисунка без текста и изменённой копии
+официального SVG-слоя. Персонажи, панели и фон не перерисовывались.
