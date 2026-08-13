@@ -1,0 +1,79 @@
+name: Assemble binary content
+
+on:
+  push:
+    paths:
+      - 'staging_binary/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Assemble ready payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import gzip, hashlib, json, shutil
+
+          root = Path('staging_binary')
+          if not root.exists():
+              raise SystemExit(0)
+
+          changed = False
+          for ready in sorted(root.glob('*/READY.json')):
+              jobdir = ready.parent
+              cfg = json.loads(ready.read_text(encoding='utf-8'))
+              output = Path(cfg['output'])
+              output.parent.mkdir(parents=True, exist_ok=True)
+              mode = cfg.get('mode', 'concat')
+              parts = [jobdir / p for p in cfg['parts']]
+              if not all(p.exists() for p in parts):
+                  print(f'Skip {jobdir}: parts missing')
+                  continue
+              tmp = output.with_suffix(output.suffix + '.tmp')
+              if mode == 'gzip':
+                  if len(parts) != 1:
+                      raise SystemExit(f'gzip job needs exactly one part: {jobdir}')
+                  with gzip.open(parts[0], 'rb') as src, open(tmp, 'wb') as dst:
+                      shutil.copyfileobj(src, dst)
+              else:
+                  with open(tmp, 'wb') as dst:
+                      for p in parts:
+                          with open(p, 'rb') as src:
+                              shutil.copyfileobj(src, dst)
+              digest = hashlib.sha256(tmp.read_bytes()).hexdigest()
+              if digest.lower() != cfg['sha256'].lower():
+                  tmp.unlink(missing_ok=True)
+                  raise SystemExit(f'SHA256 mismatch for {output}: {digest}')
+              tmp.replace(output)
+              shutil.rmtree(jobdir)
+              changed = True
+              print(f'Assembled {output} ({digest})')
+
+          Path('.assemble_changed').write_text('1' if changed else '0')
+          PY
+
+      - name: Commit assembled files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(cat .assemble_changed)" != "1" ]; then
+            echo 'Nothing ready to assemble.'
+            exit 0
+          fi
+          rm -f .assemble_changed
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Assemble verified FB2/JPG/CBZ payloads'
+          git push
