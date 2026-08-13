@@ -1,0 +1,25 @@
+{
+  "package_id": "too-often-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Слишком часто",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T07:52:11Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "a20ee174f88b4ffbd6f354691cf8e75a8401bc4aabecda78cb9d6be1c375b761",
+    "LICENSE.txt": "08bde9f8f7b59ec2fca586f401875958ed1dd3bd3ee7649bd93a0256734cdc2f",
+    "SOURCES.txt": "9ca76763601c23b4b0d5ca4b5b28ccab34d14232fd70d9943d66ae0650ab9655",
+    "cover.jpg": "a20ee174f88b4ffbd6f354691cf8e75a8401bc4aabecda78cb9d6be1c375b761",
+    "description.txt": "f00421dbb648861820499bf7ccbaf43ae3e8e7d9859a0007ecbe5bb99879edd5",
+    "metadata.json": "64d7b92aaacfff87bdc14e11e4dbfef65a675530a3117ee7f11047dcfdd70db7"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}

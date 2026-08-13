@@ -49,6 +49,12 @@
       "manifest_path": "comics/accessories-david-revoy-ru/manifest.json",
       "enabled": false,
       "reason": "production import and Mini App verification pending"
+    },
+    {
+      "path": "comics/too-often-david-revoy-ru",
+      "manifest_path": "comics/too-often-david-revoy-ru/manifest.json",
+      "enabled": false,
+      "reason": "production import and Mini App verification pending"
     }
   ]
 }
