@@ -29,22 +29,27 @@ jobs:
               with urllib.request.urlopen(req,timeout=60) as r:
                   return r.status, r.headers, r.read()
 
+          try:
+              hs,hh,hr=get(f'{BASE}/health')
+              print(json.dumps({'health_status':hs,'live_build':hh.get('X-VoxLyra-Build'),'health_body':hr.decode('utf-8','replace')[:500]},ensure_ascii=False))
+          except Exception as exc:
+              print(json.dumps({'health_error':type(exc).__name__+': '+str(exc)},ensure_ascii=False))
+
           for title in TITLES:
               qs=urllib.parse.urlencode({'q':title,'filter':'all','page':1,'page_size':36})
-              status,_,raw=get(f'{BASE}/api/catalog/search?{qs}')
+              status,catalog_headers,raw=get(f'{BASE}/api/catalog/search?{qs}')
               payload=json.loads(raw.decode('utf-8'))
               rendered=html.unescape(str(payload.get('html') or ''))
               ids=[]
               for pattern in (r'/book/(\d+)', r'data-book-id=["\'](\d+)', r'book_id["\']?\s*[:=]\s*["\']?(\d+)'):
                   ids.extend(int(x) for x in re.findall(pattern,rendered))
               ids=list(dict.fromkeys(ids))
-              print(json.dumps({'title':title,'catalog_status':status,'total':payload.get('total'),'candidate_ids':ids[:10]},ensure_ascii=False))
+              print(json.dumps({'title':title,'catalog_status':status,'live_build':catalog_headers.get('X-VoxLyra-Build'),'api_build':payload.get('build'),'total':payload.get('total'),'candidate_ids':ids[:10]},ensure_ascii=False))
               if not ids:
                   continue
-              # Exact title context is already applied by catalog q; probe candidates without printing content.
               for book_id in ids[:5]:
                   try:
-                      s,_,chapter_raw=get(f'{BASE}/api/book/{book_id}/chapter-number/1')
+                      s,chapter_headers,chapter_raw=get(f'{BASE}/api/book/{book_id}/chapter-number/1')
                       c=json.loads(chapter_raw.decode('utf-8'))
                       chapter=c.get('chapter') or {}
                       text=chapter.get('text')
@@ -53,6 +58,7 @@ jobs:
                       print(json.dumps({
                           'book_id':book_id,
                           'chapter_status':s,
+                          'chapter_build':chapter_headers.get('X-VoxLyra-Build'),
                           'chapter_number':chapter.get('number'),
                           'book_title':chapter.get('book_title'),
                           'text_field_present':isinstance(text,str),
