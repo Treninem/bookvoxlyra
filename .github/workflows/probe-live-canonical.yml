@@ -1,0 +1,68 @@
+name: Probe live canonical VoxLyra books
+
+on:
+  push:
+    paths:
+      - '.live-probe-trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe published canonical books without logging text
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import html, json, re, urllib.parse, urllib.request
+
+          BASE='https://voxlyra.bothost.tech'
+          TITLES=('Счастье во мне','Между двумя ответами')
+
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'VoxLyra-Canonical-Probe/1.0'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  return r.status, r.headers, r.read()
+
+          for title in TITLES:
+              qs=urllib.parse.urlencode({'q':title,'filter':'all','page':1,'page_size':36})
+              status,_,raw=get(f'{BASE}/api/catalog/search?{qs}')
+              payload=json.loads(raw.decode('utf-8'))
+              rendered=html.unescape(str(payload.get('html') or ''))
+              ids=[]
+              for pattern in (r'/book/(\d+)', r'data-book-id=["\'](\d+)', r'book_id["\']?\s*[:=]\s*["\']?(\d+)'):
+                  ids.extend(int(x) for x in re.findall(pattern,rendered))
+              ids=list(dict.fromkeys(ids))
+              print(json.dumps({'title':title,'catalog_status':status,'total':payload.get('total'),'candidate_ids':ids[:10]},ensure_ascii=False))
+              if not ids:
+                  continue
+              # Exact title context is already applied by catalog q; probe candidates without printing content.
+              for book_id in ids[:5]:
+                  try:
+                      s,_,chapter_raw=get(f'{BASE}/api/book/{book_id}/chapter-number/1')
+                      c=json.loads(chapter_raw.decode('utf-8'))
+                      chapter=c.get('chapter') or {}
+                      text=chapter.get('text')
+                      text_len=len(text) if isinstance(text,str) else None
+                      cover_s,cover_headers,cover_raw=get(f'{BASE}/media/cover/{book_id}')
+                      print(json.dumps({
+                          'book_id':book_id,
+                          'chapter_status':s,
+                          'chapter_number':chapter.get('number'),
+                          'book_title':chapter.get('book_title'),
+                          'text_field_present':isinstance(text,str),
+                          'text_length':text_len,
+                          'chapter_keys':sorted(k for k in chapter.keys() if k != 'text'),
+                          'cover_status':cover_s,
+                          'cover_content_type':cover_headers.get('Content-Type'),
+                          'cover_size':len(cover_raw),
+                          'cover_jpeg':cover_raw[:2]==b'\xff\xd8',
+                      },ensure_ascii=False))
+                  except Exception as exc:
+                      print(json.dumps({'book_id':book_id,'probe_error':type(exc).__name__+': '+str(exc)},ensure_ascii=False))
+          PY
