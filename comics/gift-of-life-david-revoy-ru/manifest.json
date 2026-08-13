@@ -1,0 +1,25 @@
+{
+  "package_id": "gift-of-life-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Дар жизни",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T12:49:15Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "426099765330915ad035e25c58575ec0664bc4d4c1e6075ba4b06a9cb77eb9cc",
+    "LICENSE.txt": "437a37062f732d45e3b2b310311ac09907ac066cc9b89644c69cc03cb0327e28",
+    "SOURCES.txt": "574aae6ecc4af4b367312db961c7c34d4f80e33bca45b9fe051e376eb1335b1d",
+    "cover.jpg": "426099765330915ad035e25c58575ec0664bc4d4c1e6075ba4b06a9cb77eb9cc",
+    "description.txt": "81f4f293b5d9be28f18dbf79f6370b435461f93d4806ecf496119f5ddac6095a",
+    "metadata.json": "3b5d1a783a7a536929dd0b1338b2389113ac3da2c514b162cefa18d552b75593"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}

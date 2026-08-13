@@ -1,0 +1,24 @@
+TITLE
+Дар жизни
+Original title: The Gift of Life
+
+OFFICIAL EPISODE
+https://www.peppercarrot.com/en/miniFantasyTheater/011.html
+Published: 2025-07-22
+
+ORIGINAL ARTWORK (gfx-only)
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/hi-res/gfx-only/011_miniFantasyTheater.jpg
+
+ORIGINAL ENGLISH SVG TEXT LAYER
+https://www.peppercarrot.com/0_sources/miniFantasyTheater/lang/en/011.svg
+
+AUTHOR AND ATTRIBUTION
+Art and scenario: David Revoy
+https://www.davidrevoy.com/
+
+LICENSE
+CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+
+LOCALIZATION NOTE
+The Russian adaptation preserves the official gfx-only artwork and replaces all English text in the official SVG layer: dialogue, calendar text, series label, episode number, and license label. The author name and website remain unchanged.
