@@ -3,7 +3,7 @@ name: Assemble binary content
 on:
   push:
     paths:
-      - 'staging_binary/**'
+      - 'staging_binary/**/READY.json'
   workflow_dispatch:
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import gzip, hashlib, json, shutil
+          import base64, gzip, hashlib, json, shutil
 
           root = Path('staging_binary')
           if not root.exists():
@@ -46,6 +46,13 @@ jobs:
                       raise SystemExit(f'gzip job needs exactly one part: {jobdir}')
                   with gzip.open(parts[0], 'rb') as src, open(tmp, 'wb') as dst:
                       shutil.copyfileobj(src, dst)
+              elif mode == 'base64-gzip':
+                  encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+                  packed = base64.b64decode(encoded, validate=True)
+                  tmp.write_bytes(gzip.decompress(packed))
+              elif mode == 'base64':
+                  encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+                  tmp.write_bytes(base64.b64decode(encoded, validate=True))
               else:
                   with open(tmp, 'wb') as dst:
                       for p in parts:
@@ -68,6 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$(cat .assemble_changed)" != "1" ]; then
+            rm -f .assemble_changed
             echo 'Nothing ready to assemble.'
             exit 0
           fi
