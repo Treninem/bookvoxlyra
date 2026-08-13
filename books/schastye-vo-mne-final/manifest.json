@@ -3,22 +3,23 @@
   "content_type": "book",
   "title": "Счастье во мне",
   "language": "ru",
-  "version": "1.0.0",
+  "version": "1.0.0-staging",
   "created_at": "2026-08-13T00:24:00+03:00",
-  "files": [
+  "status": "COMPLETED_SOURCE_AWAITING_BINARY_SYNC",
+  "payload_present": false,
+  "import_enabled": false,
+  "owner_only_import": true,
+  "expected_final_files": [
+    "book.fb2",
+    "book.txt",
+    "cover.jpg",
     "metadata.json",
     "description.txt",
-    "cover.jpg",
     "LICENSE.txt",
-    "SOURCES.txt",
-    "book.epub"
+    "SOURCES.txt"
   ],
-  "checksums": {
-    "metadata.json": "f8bd6c109a876399861584fd67780b426fbc956decc34803a09e5b8596886a38",
-    "description.txt": "81fbebfb7da4b5040a5ae569ddea2de735dafed73168c6ee4b5f8dc9a1a79b0b",
-    "cover.jpg": "d6f1febb5a934c1b78dab85c75328e555be593920c26ff8322c16a80aa71842f",
-    "LICENSE.txt": "86b359d04196d284986cea9a8389f0526a6f939934660c9b63dc8955e725af66",
-    "SOURCES.txt": "4d9e163b918d0b262c421d997aa1273fcc6d1a61931ec12ae3c0efa119b647b2",
-    "book.epub": "2e1b7eb0eafd3cc7d27cca3b84943fb963c5ff4285a9bcf6d7cf7089b8a95f9d"
-  }
+  "expected_final_fb2_sha256": "b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393",
+  "expected_final_cover_sha256": "d6f1febb5a934c1b78dab85c75328e555be593920c26ff8322c16a80aa71842f",
+  "expected_chapters": 170,
+  "note": "Do not import until the canonical binary source sync atomically replaces this staging manifest with payload_present=true and import_enabled=true."
 }
