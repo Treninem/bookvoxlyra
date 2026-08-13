@@ -23,7 +23,7 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import base64, gzip, hashlib, json, shutil
+          import base64, gzip, hashlib, json, lzma, shutil
 
           root = Path('staging_binary')
           if not root.exists():
@@ -48,8 +48,10 @@ jobs:
                       shutil.copyfileobj(src, dst)
               elif mode == 'base64-gzip':
                   encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
-                  packed = base64.b64decode(encoded, validate=True)
-                  tmp.write_bytes(gzip.decompress(packed))
+                  tmp.write_bytes(gzip.decompress(base64.b64decode(encoded, validate=True)))
+              elif mode == 'base64-xz':
+                  encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+                  tmp.write_bytes(lzma.decompress(base64.b64decode(encoded, validate=True), format=lzma.FORMAT_XZ))
               elif mode == 'base64':
                   encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
                   tmp.write_bytes(base64.b64decode(encoded, validate=True))
@@ -62,6 +64,10 @@ jobs:
               if digest.lower() != cfg['sha256'].lower():
                   tmp.unlink(missing_ok=True)
                   raise SystemExit(f'SHA256 mismatch for {output}: {digest}')
+              expected_size = int(cfg.get('size_bytes') or 0)
+              if expected_size and tmp.stat().st_size != expected_size:
+                  tmp.unlink(missing_ok=True)
+                  raise SystemExit(f'Size mismatch for {output}: {tmp.stat().st_size} != {expected_size}')
               tmp.replace(output)
               shutil.rmtree(jobdir)
               changed = True
