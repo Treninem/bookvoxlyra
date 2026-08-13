@@ -2,21 +2,32 @@
   "title": "Счастье во мне",
   "author": "Treninem",
   "description": "«Счастье во мне» — эмоциональный роман о двух людях, которые учатся любить не идеально, а по-настоящему.\n\nМайкл привык справляться с жизнью силой, а Алиса — скрывать слабость за спокойствием и независимостью. Их встреча начинается со спора, но постепенно между ними появляется доверие, близость и чувство, способное изменить обоих.\n\nЭто история о любви, выборе, ошибках, втором шансе и счастье, которое иногда остаётся с нами даже тогда, когда жизнь меняется навсегда.",
-  "genre": ["Современный любовный роман", "Драма", "Эротический роман"],
-  "tags": ["любовь", "драма", "романтика", "взрослые отношения", "второй шанс", "эмоциональная проза"],
+  "genre": [
+    "Современный любовный роман",
+    "Драма",
+    "Эротический роман"
+  ],
+  "tags": [
+    "любовь",
+    "драма",
+    "романтика",
+    "взрослые отношения",
+    "второй шанс",
+    "эмоциональная проза"
+  ],
   "age_rating": "18+",
   "type": "novel",
   "language": "ru",
   "license": "platform_original",
-  "rights_checked": true,
-  "rights_holder": "Treninem",
-  "rights_holder_type": "person",
-  "source": "VoxLyra project-owner final package: VoxLyra_Import_Schastye_vo_mne_FINAL.zip",
-  "source_archive_sha256": "ba01f38c06b76fd6a6bdf2806c18f5de8e321313151e4f4da2d1d00ba064d594",
-  "source_book_sha256": "b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393",
   "free_or_paid": "free",
   "price_stars": 0,
   "chapters_count": 170,
   "cover": "cover.jpg",
-  "file": "book.epub"
+  "file": "book.epub",
+  "rights_checked": true,
+  "rights_holder": "Treninem",
+  "rights_holder_type": "person",
+  "source": "VoxLyra project-owner final package: VoxLyra_Import_Schastye_vo_mne_FINAL(1).zip",
+  "source_archive_sha256": "ba01f38c06b76fd6a6bdf2806c18f5de8e321313151e4f4da2d1d00ba064d594",
+  "source_book_sha256": "b48a2e65d852b9f5a5ab705850865d038558182351ae649f18215e825a325393"
 }
