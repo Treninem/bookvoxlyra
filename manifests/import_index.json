@@ -25,6 +25,30 @@
       "manifest_path": "comics/open-comics-batch01-stage03/manifest.json",
       "enabled": false,
       "reason": "payload_present=false"
+    },
+    {
+      "path": "comics/coffee-for-you-ru",
+      "manifest_path": "comics/coffee-for-you-ru/manifest.json",
+      "enabled": false,
+      "reason": "production import and Mini App verification pending"
+    },
+    {
+      "path": "comics/monster-david-revoy-ru",
+      "manifest_path": "comics/monster-david-revoy-ru/manifest.json",
+      "enabled": false,
+      "reason": "production import and Mini App verification pending"
+    },
+    {
+      "path": "comics/my-treasure-david-revoy-ru",
+      "manifest_path": "comics/my-treasure-david-revoy-ru/manifest.json",
+      "enabled": false,
+      "reason": "production import and Mini App verification pending"
+    },
+    {
+      "path": "comics/accessories-david-revoy-ru",
+      "manifest_path": "comics/accessories-david-revoy-ru/manifest.json",
+      "enabled": false,
+      "reason": "production import and Mini App verification pending"
     }
   ]
 }

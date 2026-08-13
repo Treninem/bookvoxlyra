@@ -1,0 +1,41 @@
+{
+  "package_id": "coffee-for-you-ru",
+  "content_type": "comics",
+  "title": "Кофе для тебя",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T06:57:18Z",
+  "files": [
+    "Chapters/001/page-01.png",
+    "Chapters/001/page-02.jpeg",
+    "Chapters/001/page-03.png",
+    "Chapters/001/page-04.png",
+    "Chapters/001/page-05.png",
+    "Chapters/001/page-06.png",
+    "Chapters/001/page-07.png",
+    "Chapters/001/page-08.png",
+    "Chapters/001/page-09.png",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.png",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.png": "afb179ea3350844473f4d2b9f1ec3903ef0d122e41e35d86019d700482018d11",
+    "Chapters/001/page-02.jpeg": "48e5623bea2ac28d07e5c04f685ca84f09934c86d122f518785532289b0a2f68",
+    "Chapters/001/page-03.png": "1ed26e02733b734ab9f0f4a05127001d2be3d736fc4b73a175f4dfabba9e4c85",
+    "Chapters/001/page-04.png": "690ec707b4a629c52d7bc07d4fe9841886059bdf6980b3c05e68baa7a6b65ac4",
+    "Chapters/001/page-05.png": "fdf7f980ead13b7d629007450b0e19762539265aae9950a40876bd8a10a8aca6",
+    "Chapters/001/page-06.png": "fd689d2d04504f892047b2608ad500838b597c612cacd8f52c2226cf3a101b55",
+    "Chapters/001/page-07.png": "640c3abddb27c80c0e5ccbfaa432b292dc9dabfb5aa9ce4a585b06a0de37ac31",
+    "Chapters/001/page-08.png": "49d484fe9cb07f16113573d2d076726f11320579fe83145ff24ea3ea65184ba4",
+    "Chapters/001/page-09.png": "9d4ee92712c3c154ba22bdca48d02fe6183d40c6ce3c93fabb9e5b78c7fe027e",
+    "LICENSE.txt": "8eb3c4ec072624e1ee55353b9a3edf4c4393b42f5e95bac1a48917f8cfc2e8b1",
+    "SOURCES.txt": "3384dbf794ce598d1c67fa487f59f63bfe13f029efe4e7dc76f4242811af5e0f",
+    "cover.png": "701577425816c545ea22c09a3fc5f56c8d62c91cff598f4b1df60fef582d09bc",
+    "description.txt": "e42695b965543f7b491ecc67b954ceffc9ada359a6da50ac579fb10837f38c37",
+    "metadata.json": "c20bf45646d795aa5d1501a652b8c43179827766a4f362d9a525b090eb01a5f4"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}

@@ -1,0 +1,25 @@
+{
+  "package_id": "accessories-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Аксессуары",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T06:57:18Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "f730ff7eda3af7de6d9dcb65f364d8a3ba9de8958336557c5c13a8c4ef826ff7",
+    "LICENSE.txt": "ead5eac99f1e94c00bce215e558fb3b5d8cc00d8c2a17656961a545c0ca91462",
+    "SOURCES.txt": "c57014b7173594c69528432f670778f6628424db2978a2cd282b005c0dc18df4",
+    "cover.jpg": "f730ff7eda3af7de6d9dcb65f364d8a3ba9de8958336557c5c13a8c4ef826ff7",
+    "description.txt": "a1156ae48577fa2f732cc974830564fcad27a7027c0c8bf2ac7da534b0fedcd6",
+    "metadata.json": "84025cc570a631b99523c8c2248858b3edf9fe7b261d0b7f51f6974174390171"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
