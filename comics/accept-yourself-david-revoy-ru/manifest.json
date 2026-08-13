@@ -1,0 +1,25 @@
+{
+  "package_id": "accept-yourself-david-revoy-ru",
+  "content_type": "comics",
+  "title": "Прими себя",
+  "language": "ru",
+  "version": "1.0.0",
+  "created_at": "2026-08-13T11:48:05Z",
+  "files": [
+    "Chapters/001/page-01.jpg",
+    "LICENSE.txt",
+    "SOURCES.txt",
+    "cover.jpg",
+    "description.txt",
+    "metadata.json"
+  ],
+  "checksums": {
+    "Chapters/001/page-01.jpg": "761001c9005ea7b51733231d2b2aee9026b8f09b3a802a30ad9af6bc9c3a105d",
+    "LICENSE.txt": "c080d1a8cf6731ff89d279e221b17c8ca537ed2cea9f185033e4844eec55e9cf",
+    "SOURCES.txt": "7fda6a1e4a8f78866fbaff0996a599c8d30ed4b05841d23092bc2b4d204e5745",
+    "cover.jpg": "761001c9005ea7b51733231d2b2aee9026b8f09b3a802a30ad9af6bc9c3a105d",
+    "description.txt": "d62bdb55e06102e73f05e550d18f2e71575cdf2aad9dcf420608f809be99d446",
+    "metadata.json": "2973a9696a896eaa673a538b3de04e5badbcca39bf3892cf298a46f8a78eafb3"
+  },
+  "verification_status": "local-import-passed; production-miniapp-pending"
+}
